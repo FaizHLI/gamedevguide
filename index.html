@@ -875,88 +875,614 @@
       <div><div class="track-sub">What to actually do and when</div><h2>Year 1 & Year 2 Roadmaps</h2></div>
     </div>
 
+    <!-- MONTH 1 -->
     <div class="phase phase-gold">
       <div class="phase-header" onclick="togglePhase(this)">
-        <div><div class="phase-num">YEAR 1 / Q1</div><div class="phase-title">Months 1&ndash;3: Foundations & First Completions</div></div>
+        <div><div class="phase-num">MONTH 1</div><div class="phase-title">Setup, First Tools, Ship Pong</div><div class="phase-timeline">Q1 &middot; ~10&ndash;12 hrs/week</div></div>
         <div class="phase-toggle">&#9662;</div>
       </div>
       <div class="phase-body">
-        <div class="phase-goal">The most important quarter. Build the habit infrastructure. Finish three tiny complete games.</div>
-        <div class="sub-section-title">Month 1</div>
+        <div class="phase-goal">Goal: Install all tools. Build Pong from scratch with your own art and sound. Ship it on itch.io by the end of the month. Start daily pixel art and weekly music theory habits.</div>
+
+        <div class="sub-section-title">Week 1 &mdash; Tool Setup & First Contact</div>
         <ul class="plain-list">
-          <li><strong>Godot:</strong> Complete GDQuest beginner series. Build Pong and a simple platformer prototype from scratch.</li>
-          <li><strong>Art:</strong> Start BJG's pixel art series. Draw basic objects daily at 16x16. Pick one palette and don't change it.</li>
-          <li><strong>Music:</strong> Start musictheory.net lessons. Install LMMS. Use BFXR for all SFX.</li>
-          <li><strong>Design:</strong> Read "A Theory of Fun." Write design autopsies on 4 games you play this month.</li>
-          <li><strong>Ship:</strong> Release one game on itch.io &mdash; a 5-minute Pong clone with BFXR sounds and basic pixel sprites. Don't wait for it to be good.</li>
+          <li><strong>Godot:</strong> Install Godot 4. Watch GDQuest beginner series episodes 1&ndash;4. Create your first project: a moving sprite with keyboard input.</li>
+          <li><strong>Art:</strong> Install Aseprite. Watch BJG "Complete Beginner's Guide" part 1. Draw 5 simple objects at 16x16 (sword, potion, rock, tree, chest) using only 3 colors each.</li>
+          <li><strong>Music:</strong> Bookmark <a href="https://www.musictheory.net/lessons" target="_blank" rel="noopener">musictheory.net</a>. Complete first 4 lessons (staff, clefs, note duration, time signatures). Install LMMS &mdash; just open it and poke around.</li>
+          <li><strong>Design:</strong> Start reading "A Theory of Fun." Write your first design autopsy on a game you played this week (200 words).</li>
         </ul>
-        <div class="sub-section-title">Month 2</div>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Week 1 Milestone:</strong> A Godot project with a sprite that moves via keyboard input. Five 16x16 pixel objects saved in Aseprite. One design autopsy written.</div>
+        </div>
+
+        <div class="sub-section-title">Week 2 &mdash; Pong Core Mechanics</div>
         <ul class="plain-list">
-          <li><strong>Godot:</strong> Build a complete platformer: player controller, 2 enemy types, collectibles, basic HUD, win/lose state. Use pixel art you made.</li>
-          <li><strong>Art:</strong> Character design at 32x32 &mdash; front and side-facing. Begin tileset work. Post your art online for critique.</li>
-          <li><strong>Music:</strong> Finish musictheory.net basics. Write your first 30-second loop in LMMS. Doesn't need to be good.</li>
-          <li><strong>Design:</strong> Start "Art of Game Design" &mdash; one chapter per week. Write a one-page GDD for your next project before building it.</li>
-          <li><strong>Ship:</strong> Release that platformer on itch.io. It will be rough. Ship it anyway.</li>
+          <li><strong>Godot:</strong> GDQuest episodes 5&ndash;8. Start building Pong from scratch &mdash; no tutorial. Implement: two paddles, ball movement, wall collision, and scoring. Use Godot primitive shapes (no art yet).</li>
+          <li><strong>Art:</strong> BJG parts 2&ndash;3. Draw a paddle sprite, a ball sprite, and a background tile at 16x16. Apply directional lighting (top-left) using 4-value color ramps.</li>
+          <li><strong>Music:</strong> musictheory.net lessons 5&ndash;8 (measures, rest, dots &amp; ties). Open <a href="https://www.bfxr.net" target="_blank" rel="noopener">BFXR</a> and generate 4 sounds: ball hit, wall bounce, score point, game over.</li>
+          <li><strong>Design:</strong> Continue "Theory of Fun" (chapters 3&ndash;5). Write a second design autopsy.</li>
         </ul>
-        <div class="sub-section-title">Month 3</div>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Week 2 Milestone:</strong> Playable grey-box Pong with scoring. Custom pixel art paddle and ball sprites ready. Four BFXR sound effects exported as .wav files.</div>
+        </div>
+
+        <div class="sub-section-title">Week 3 &mdash; Pong Polish & Integration</div>
         <ul class="plain-list">
-          <li><strong>Godot:</strong> Build something mechanically different &mdash; a top-down shooter or puzzle game. Practice state machines and signals.</li>
-          <li><strong>Art:</strong> Walk cycle attempt #1. 4-frame idle animation. Animate your sprites in the game.</li>
-          <li><strong>Music:</strong> Compose a music track for one game state. Integrate it in Godot with proper audio bus setup.</li>
-          <li><strong>Jam:</strong> Enter your first game jam (<a href="https://ldjam.com" target="_blank" rel="noopener">Ludum Dare</a> or GMTK). Mandatory. Treat it as a learning event, not a competition.</li>
+          <li><strong>Godot:</strong> Replace grey-box primitives with your pixel art sprites. Add a title screen and a game-over screen. Integrate all 4 BFXR sound effects using AudioStreamPlayer.</li>
+          <li><strong>Art:</strong> Draw a simple number font (0&ndash;9) at 8x8 for the score display. Create a title screen graphic. Practice anti-aliasing on your existing sprites.</li>
+          <li><strong>Music:</strong> musictheory.net lessons 9&ndash;12 (accidentals, major scale, key signatures). In LMMS, load a synth and play a C major scale &mdash; just get sound out of it.</li>
+          <li><strong>Design:</strong> Finish "Theory of Fun." Write a one-paragraph reflection: what is your game's core loop? What does the player learn?</li>
         </ul>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Week 3 Milestone:</strong> Pong with custom art, sound effects, title screen, and game-over screen. Fully playable start-to-finish. "Theory of Fun" complete.</div>
+        </div>
+
+        <div class="sub-section-title">Week 4 &mdash; Ship It & Reflect</div>
+        <ul class="plain-list">
+          <li><strong>Godot:</strong> Export Pong as an HTML5 web build. Create an <a href="https://itch.io" target="_blank" rel="noopener">itch.io</a> account. Upload. Write a 3-sentence description. Take a screenshot for the cover image. <strong>Publish it.</strong></li>
+          <li><strong>Art:</strong> Draw 5 new objects at 16x16 &mdash; different from week 1. Compare side-by-side with week 1 work. You should see measurable improvement in readability and color use.</li>
+          <li><strong>Music:</strong> musictheory.net lessons 13&ndash;16 (minor scales, scale degrees). Generate 3 more BFXR sounds for your next project. Try making a "UI click" sound &mdash; subtle and short.</li>
+          <li><strong>Design:</strong> Write a 300-word retrospective on your Pong project: what went well, what was harder than expected, what would you do differently.</li>
+        </ul>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Month 1 Milestone:</strong> One game shipped on itch.io. 10+ pixel art objects drawn. musictheory.net 25% complete. "Theory of Fun" read. Two design autopsies and one project retrospective written. You have shipped more than most aspiring game devs ever will.</div>
+        </div>
       </div>
     </div>
 
+    <!-- MONTH 2 -->
+    <div class="phase phase-gold">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">MONTH 2</div><div class="phase-title">Build & Ship a Platformer</div><div class="phase-timeline">Q1 &middot; ~10&ndash;12 hrs/week</div></div>
+        <div class="phase-toggle">&#9662;</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-goal">Goal: Build a complete platformer with your own art, sound, and a basic music loop. Ship it on itch.io. Start reading "The Art of Game Design."</div>
+
+        <div class="sub-section-title">Week 5 &mdash; Platformer Core: Movement & Physics</div>
+        <ul class="plain-list">
+          <li><strong>Godot:</strong> Write a one-page GDD for your platformer before touching the engine. New project. Implement a CharacterBody2D player controller with: run, jump, gravity, and ground detection. Get coyote time working (0.1s grace period).</li>
+          <li><strong>Art:</strong> Design your player character at 32x32. Front-facing only for now. Use a limited palette (DB32 or PICO-8). Focus on a clear, readable silhouette.</li>
+          <li><strong>Music:</strong> musictheory.net lessons 17&ndash;20 (intervals, chord construction). Listen to 3 platformer soundtracks analytically (Celeste, Shovel Knight, Sonic). Write one sentence about each: what mood does the music set?</li>
+          <li><strong>Design:</strong> Start "Art of Game Design" &mdash; chapters 1&ndash;3. Apply Lens #1 (Essential Experience) to your platformer: what should the player feel?</li>
+        </ul>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Week 5 Milestone:</strong> One-page GDD written. Player character moves, jumps, and lands with coyote time. A 32x32 player sprite exists.</div>
+        </div>
+
+        <div class="sub-section-title">Week 6 &mdash; Enemies, Collectibles, HUD</div>
+        <ul class="plain-list">
+          <li><strong>Godot:</strong> Add a simple enemy that patrols back and forth (use a basic 2-state approach &mdash; no full FSM yet). Add coin/gem collectibles using Area2D + signals. Build a basic HUD: score counter and lives display.</li>
+          <li><strong>Art:</strong> Draw your enemy sprite at 32x32 with a 2-frame animation (idle bounce). Draw a collectible (coin/gem) with a 4-frame spin animation. Draw a heart/life icon at 16x16 for the HUD.</li>
+          <li><strong>Music:</strong> musictheory.net lessons 21&ndash;24 (major/minor triads, chord progressions). Open LMMS. Try writing a 4-bar melody using only quarter notes in C major. Don't judge it &mdash; just get notes down.</li>
+          <li><strong>Design:</strong> "Art of Game Design" chapters 4&ndash;6. Apply Lens #6 (Curiosity) to your platformer: what makes the player want to explore?</li>
+        </ul>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Week 6 Milestone:</strong> Platformer has a patrol enemy, collectibles that increment score, a working HUD with lives. All using your custom sprites.</div>
+        </div>
+
+        <div class="sub-section-title">Week 7 &mdash; Level Design & Audio Integration</div>
+        <ul class="plain-list">
+          <li><strong>Godot:</strong> Design 3 short levels using TileMap. Level 1 teaches jumping. Level 2 introduces the enemy. Level 3 combines both with a simple challenge. Add player death (touching enemy) and level transitions.</li>
+          <li><strong>Art:</strong> Create a ground tileset (3&ndash;4 tiles: grass, dirt, edge pieces) that tiles cleanly. Draw a simple background layer &mdash; even a gradient with distant shapes. Post your tileset online for critique.</li>
+          <li><strong>Music:</strong> Expand your 4-bar melody into a 16-bar loop. Add a bass line using root notes. Add a simple drum pattern (kick + snare). Export as .ogg. Generate 5 BFXR sounds: jump, land, coin pickup, enemy hit, death.</li>
+          <li><strong>Design:</strong> "Art of Game Design" chapters 7&ndash;9. After building your 3 levels, watch someone else play them without explaining the controls. Note where they get stuck.</li>
+        </ul>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Week 7 Milestone:</strong> Three playable levels with custom tileset. One background music loop integrated. All sound effects in place. One playtest completed.</div>
+        </div>
+
+        <div class="sub-section-title">Week 8 &mdash; Ship the Platformer</div>
+        <ul class="plain-list">
+          <li><strong>Godot:</strong> Add a title screen and win/game-over screen. Set up audio buses (Master &rarr; Music, Master &rarr; SFX). Add pitch randomization (&plusmn;0.05) to the coin pickup sound. Export as HTML5. Upload to itch.io. <strong>Ship it.</strong></li>
+          <li><strong>Art:</strong> Create a title screen image and an itch.io cover image (630&times;500px). Polish any sprites that bother you &mdash; but set a 2-hour maximum. Done is better than perfect.</li>
+          <li><strong>Music:</strong> musictheory.net: finish the Lessons section basics (~lesson 28). Listen to your game loop and note one thing to improve next time (too busy? too quiet? loop seam audible?).</li>
+          <li><strong>Design:</strong> Write a 400-word project retrospective. Answer: did the GDD match the final game? What did you cut? What surprised you?</li>
+        </ul>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Month 2 Milestone:</strong> Two games shipped on itch.io. First complete platformer with original art, sound, and music. musictheory.net fundamentals complete. "Art of Game Design" ~9 chapters in. You can now build a functional game from scratch in under 2 weeks.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MONTH 3 -->
+    <div class="phase phase-gold">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">MONTH 3</div><div class="phase-title">New Genre, First Animation, First Jam</div><div class="phase-timeline">Q1 &middot; ~12&ndash;15 hrs/week</div></div>
+        <div class="phase-toggle">&#9662;</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-goal">Goal: Build a game in a genre you haven't tried. Attempt your first walk cycle. Enter a game jam. By end of month, you've shipped 3&ndash;4 games and have working daily habits in all five tracks.</div>
+
+        <div class="sub-section-title">Week 9 &mdash; New Genre Prototype</div>
+        <ul class="plain-list">
+          <li><strong>Godot:</strong> Write a one-page GDD for a top-down game (shooter, puzzle, or RPG exploration). Implement: top-down movement (8-directional), a basic interaction mechanic (shooting OR pushing blocks OR talking to NPCs), and camera follow.</li>
+          <li><strong>Art:</strong> Draw a new player character at 32x32, top-down perspective. This is a different challenge than side-view &mdash; top-down proportions are distinct. Draw 3 floor tiles and 2 wall tiles.</li>
+          <li><strong>Music:</strong> musictheory.net: start the Exercises section. Study one 8-Bit Music Theory video. In LMMS, write a new 16-bar loop in a minor key &mdash; aim for a different mood than your platformer track.</li>
+          <li><strong>Design:</strong> "Art of Game Design" chapters 10&ndash;12. Analyze: how does a top-down game communicate "where to go" differently than a platformer?</li>
+        </ul>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Week 9 Milestone:</strong> Playable top-down grey-box prototype with core mechanic working. New character sprite and tileset drawn.</div>
+        </div>
+
+        <div class="sub-section-title">Week 10 &mdash; Animation & State Machines</div>
+        <ul class="plain-list">
+          <li><strong>Godot:</strong> Implement a signal-based architecture for your game events (damage, pickups, state changes). Refactor your player to use AnimationPlayer with at least 3 states (idle, walk, action). Add one enemy with basic AI.</li>
+          <li><strong>Art:</strong> Attempt your first walk cycle: 4 frames, side-view or top-down matching your game. Use reference. It will look bad &mdash; that's expected. Also create a 4-frame idle animation (subtle breathing/bobbing).</li>
+          <li><strong>Music:</strong> One 8-Bit Music Theory video. Start learning about chord inversions and voice leading on musictheory.net. Integrate your minor-key loop into the top-down game.</li>
+          <li><strong>Design:</strong> "Art of Game Design" chapters 13&ndash;15. Write a design autopsy on a top-down game you admire (Zelda, Hotline Miami, Vampire Survivors).</li>
+        </ul>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Week 10 Milestone:</strong> Player has animated idle/walk/action states. Signal-based events working. First walk cycle completed (however rough). One enemy with basic behavior.</div>
+        </div>
+
+        <div class="sub-section-title">Week 11 &mdash; Polish & Ship Game #3</div>
+        <ul class="plain-list">
+          <li><strong>Godot:</strong> Add juice: screen shake on hit, a particle effect on one event, and Tween-based score popup. Generate BFXR sounds for all interactions. Add title and end screens. Set up audio buses. Export and ship to itch.io.</li>
+          <li><strong>Art:</strong> Polish your character animations. Draw any remaining assets (UI elements, background detail). Create itch.io cover art.</li>
+          <li><strong>Music:</strong> Add a second variation of your track (faster tempo or different instrumentation) for a different game state. Practice crossfading between them in Godot.</li>
+          <li><strong>Design:</strong> Playtest with one person. Write a retrospective comparing this project to your platformer: what was easier? What new problems did the genre introduce?</li>
+        </ul>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Week 11 Milestone:</strong> Three games shipped on itch.io. First animated character sprites in a game. First attempt at adaptive audio (two tracks crossfading).</div>
+        </div>
+
+        <div class="sub-section-title">Week 12 &mdash; Your First Game Jam</div>
+        <ul class="plain-list">
+          <li><strong>Jam:</strong> Enter <a href="https://ldjam.com" target="_blank" rel="noopener">Ludum Dare</a>, GMTK Jam, or any jam running this month. Commit to the 48&ndash;72 hour format. Do NOT pre-plan. The point is constraint-driven creativity.</li>
+          <li><strong>Process:</strong> Hour 1: brainstorm &rarr; pick one idea &rarr; write a 5-bullet GDD. Hours 2&ndash;8: grey-box prototype. Hours 9&ndash;16: art pass. Hours 17&ndash;20: sound + music. Final hours: polish, export, submit. Sleep somewhere in there.</li>
+          <li><strong>After the jam:</strong> Write a jam retrospective. Rate other people's games. Read feedback on yours. This is the single highest-learning-density activity in game dev.</li>
+        </ul>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Quarter 1 Complete:</strong> 3&ndash;4 games shipped (including one jam game). Daily pixel art habit established. musictheory.net fundamentals done. "Theory of Fun" finished, "Art of Game Design" half done. Three project retrospectives written. You are no longer a complete beginner &mdash; you are a beginner who ships.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" style="margin: 40px 0;">
+
+    <!-- MONTH 4 -->
     <div class="phase phase-teal">
       <div class="phase-header" onclick="togglePhase(this)">
-        <div><div class="phase-num">YEAR 1 / Q2&ndash;Q3</div><div class="phase-title">Months 4&ndash;9: Skill Deepening & Second Projects</div></div>
+        <div><div class="phase-num">MONTH 4</div><div class="phase-title">Intermediate Godot &mdash; Game Feel & State Machines</div><div class="phase-timeline">Q2 &middot; ~12 hrs/week</div></div>
         <div class="phase-toggle">&#9662;</div>
       </div>
       <div class="phase-body">
-        <div class="phase-goal">Deeper technical work on all five tracks. Complete 3&ndash;4 more games, each slightly more ambitious. Start learning shaders and intermediate music production.</div>
+        <div class="phase-goal">Goal: Level up your Godot architecture. Build a game focused entirely on game feel and juice. Read "Game Feel" by Steve Swink.</div>
+
+        <div class="sub-section-title">Weeks 13&ndash;14 &mdash; "Juice It or Lose It" Project</div>
         <ul class="plain-list">
-          <li>Build one game that uses procedural generation OR a complex dialogue system OR a tile-based dungeon. Something that pushes you technically.</li>
-          <li>Pixel art: begin environment art. Create one complete game scene with background, midground, and foreground layers.</li>
-          <li>Music: transition from LMMS to a more capable DAW. Compose 3 complete tracks (menu, gameplay, boss/intense). Study Celeste and Hollow Knight OSTs analytically.</li>
-          <li>Design: apply Jesse Schell's lenses to every project. Write a retrospective after every shipped game.</li>
-          <li>Enter two more game jams. Every entry goes on itch.io.</li>
+          <li><strong>Godot:</strong> Build a tiny arena shooter or brick breaker &mdash; something with constant impacts. Implement a proper finite state machine for the player. Add: screen shake (Camera2D offset), hitstop (Engine.time_scale for 3&ndash;5 frames), particle bursts on every impact, Tween-based animations on pickups and score.</li>
+          <li><strong>Art:</strong> Focus on effects this month: draw a simple explosion spritesheet (4&ndash;6 frames), a hit spark (3 frames), and a dust puff (4 frames). These reusable VFX sprites will serve you for years.</li>
+          <li><strong>Music:</strong> Read about chord progressions (I&ndash;IV&ndash;V&ndash;I, I&ndash;V&ndash;vi&ndash;IV). Write a track using only one chord progression, focusing on getting the rhythm right. Implement pitch randomization on all repeated SFX.</li>
+          <li><strong>Design:</strong> Start reading "Game Feel" (Steve Swink). Record a before/after video of your game with and without juice. The difference should be dramatic.</li>
         </ul>
+
+        <div class="sub-section-title">Weeks 15&ndash;16 &mdash; Ship Game #5 (The Juice Game)</div>
+        <ul class="plain-list">
+          <li><strong>Godot:</strong> Add AudioStreamRandomizer to any repeated sounds (hits, pickups). Implement input buffering if your game has a jump or action timing. Add a simple score system with animated popups. Ship to itch.io.</li>
+          <li><strong>Art:</strong> Sprite study: pick a game with excellent pixel VFX (Dead Cells, Hyper Light Drifter, Celeste). Recreate one of their explosion or hit effects pixel by pixel. Compare to yours.</li>
+          <li><strong>Music:</strong> Compose a "tension" track &mdash; faster tempo, dissonant intervals. Practice crossfading between calm and tense tracks based on game state.</li>
+          <li><strong>Design:</strong> Finish "Game Feel." Write a retrospective analyzing which juice techniques had the most impact per effort.</li>
+        </ul>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Month 4 Milestone:</strong> Five games shipped. You understand screen shake, hitstop, particles, and input buffering. Your games now <em>feel</em> noticeably better than month 1. "Game Feel" finished.</div>
+        </div>
       </div>
     </div>
 
-    <div class="phase phase-rose">
+    <!-- MONTH 5 -->
+    <div class="phase phase-teal">
       <div class="phase-header" onclick="togglePhase(this)">
-        <div><div class="phase-num">YEAR 1 / Q4</div><div class="phase-title">Months 10&ndash;12: Integration & First "Real" Game</div></div>
+        <div><div class="phase-num">MONTH 5</div><div class="phase-title">Procedural Generation & Environment Art</div><div class="phase-timeline">Q2 &middot; ~12 hrs/week</div></div>
         <div class="phase-toggle">&#9662;</div>
       </div>
       <div class="phase-body">
-        <div class="phase-goal">Design and ship your most ambitious game to date &mdash; a real, complete, polished product within your current capability.</div>
+        <div class="phase-goal">Goal: Build a game with procedural content. Create your first complete pixel art environment with parallax layers.</div>
+
+        <div class="sub-section-title">Weeks 17&ndash;18 &mdash; Procedural Dungeon Prototype</div>
         <ul class="plain-list">
-          <li>Write a full GDD before touching Godot. Scope it to 6 weeks. Cut it in half.</li>
-          <li>Build vertical slice first &mdash; fully polished single level with final art and audio.</li>
-          <li>All art original. All audio original or licensed CC with attribution.</li>
-          <li>Playtested by at least 5 real people before release.</li>
-          <li>Released on itch.io with screenshots, cover image, and a 3-sentence description.</li>
+          <li><strong>Godot:</strong> Build a dungeon generator using Binary Space Partitioning or random walk. Render it with TileMap. Add a player that can explore the generated space. Add at least one procedural element (enemy placement, chest spawning, or room variation).</li>
+          <li><strong>Art:</strong> Design a cohesive dungeon tileset: floor (3 variants), walls (4 edge pieces minimum), door, and decorative objects (torch, crack, cobweb). Focus on seamless tiling and visual variety within constraint.</li>
+          <li><strong>Music:</strong> Study the Celeste OST analytically. Write notes on how Lena Raine uses layers. Try writing a track with 2 layers that can be toggled independently (melody layer on/off over a base layer).</li>
+          <li><strong>Design:</strong> "Art of Game Design" chapters 16&ndash;20. Study how roguelikes maintain engagement through procedural variation. What makes each run feel different?</li>
         </ul>
+
+        <div class="sub-section-title">Weeks 19&ndash;20 &mdash; Ship Game #6 + Parallax Practice</div>
+        <ul class="plain-list">
+          <li><strong>Godot:</strong> Turn the dungeon prototype into a shippable game: add a goal state (find the exit, collect N items, or survive N rooms). Add a simple UI. Ship to itch.io.</li>
+          <li><strong>Art:</strong> Separate from the game &mdash; create a 3-layer parallax scene (far mountains, mid trees, near ground) as a standalone exercise. Implement it in a test Godot project with ParallaxBackground. This is your first environment composition.</li>
+          <li><strong>Music:</strong> Compose an "exploration" track and a "discovery" stinger (3&ndash;5 second musical phrase that plays on finding something). Integrate both.</li>
+          <li><strong>Design:</strong> Enter a game jam this month if one is available. Otherwise, playtest your dungeon game with 3 people and write a retrospective.</li>
+        </ul>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Month 5 Milestone:</strong> Six games shipped. First procedurally generated game. First cohesive tileset. First parallax environment. First layered music track. You can now generate content, not just hand-place it.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MONTH 6 -->
+    <div class="phase phase-teal">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">MONTH 6</div><div class="phase-title">Game Jam #2 & DAW Transition</div><div class="phase-timeline">Q2 &middot; ~12 hrs/week</div></div>
+        <div class="phase-toggle">&#9662;</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-goal">Goal: Enter your second game jam. Transition from LMMS to FL Studio or Ableton. Reach the halfway point of Year 1 with 7+ shipped games.</div>
+
+        <div class="sub-section-title">Weeks 21&ndash;22 &mdash; DAW Transition & Technical Deepening</div>
+        <ul class="plain-list">
+          <li><strong>Godot:</strong> Pick a technical challenge you've been avoiding: save/load system, dialogue system, inventory system, or shader effects. Build it as an isolated prototype &mdash; not inside a game. Focus on clean architecture.</li>
+          <li><strong>Art:</strong> Sprite study week: recreate 3 pixel art sprites from professional games you admire, pixel by pixel. Then create an "original inspired by" piece for each. Six total pieces.</li>
+          <li><strong>Music:</strong> Install FL Studio (free trial or ~$99) or Ableton Live Lite. Rebuild your best LMMS track in the new DAW. The interface will feel alien &mdash; this is normal. Watch 3&ndash;4 <a href="https://www.youtube.com/@inthemix" target="_blank" rel="noopener">In The Mix</a> beginner tutorials.</li>
+          <li><strong>Design:</strong> "Art of Game Design" chapters 21&ndash;24. Write a design document for a hypothetical game that combines two genres you've built. Don't build it &mdash; just practice designing at higher complexity.</li>
+        </ul>
+
+        <div class="sub-section-title">Weeks 23&ndash;24 &mdash; Game Jam #2 + Half-Year Review</div>
+        <ul class="plain-list">
+          <li><strong>Jam:</strong> Enter your second game jam. This time, challenge yourself: compose original music (not just BFXR) and include at least one animation. Aim for a tighter scope than your first jam &mdash; you now know how little you can actually finish in 48 hours.</li>
+          <li><strong>Review:</strong> After the jam, do a comprehensive half-year review. Look at your first itch.io game versus your latest. List: 5 skills you've gained, 3 things still weak, 2 habits that are working, 1 habit you need to build.</li>
+          <li><strong>Portfolio:</strong> Make sure all your itch.io pages have proper descriptions, screenshots, and cover images. This is your portfolio now.</li>
+        </ul>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Half-Year Milestone:</strong> 7&ndash;8 games shipped. Two game jams completed. "Art of Game Design" nearly finished. DAW transition started. You have animated sprites, procedural content, juice techniques, and audio integration skills. You're building faster and better than month 1. The compound effect is real.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" style="margin: 40px 0;">
+
+    <!-- MONTH 7 -->
+    <div class="phase phase-teal">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">MONTH 7</div><div class="phase-title">Shaders, Complex Systems & Intermediate Music</div><div class="phase-timeline">Q3 &middot; ~12 hrs/week</div></div>
+        <div class="phase-toggle">&#9662;</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-goal">Goal: Learn basic shaders. Build a game with interconnected systems (not just isolated mechanics). Compose a proper 3-track mini-soundtrack.</div>
+
+        <div class="sub-section-title">Weeks 25&ndash;26 &mdash; Shader Fundamentals</div>
+        <ul class="plain-list">
+          <li><strong>Godot:</strong> Start <a href="https://thebookofshaders.com" target="_blank" rel="noopener">The Book of Shaders</a> chapters 1&ndash;5. In Godot, implement 3 shaders: outline shader (for selected objects), a simple dissolve effect (for deaths/transitions), and a color palette swap shader. Apply these to an existing project.</li>
+          <li><strong>Art:</strong> Focus on UI art: design a health bar, an inventory slot, a dialogue box frame, and button states (normal, hover, pressed). These reusable UI components will speed up every future project.</li>
+          <li><strong>Music:</strong> In your new DAW, compose a "menu theme" &mdash; slow, atmospheric, 30&ndash;45 seconds, looping. Focus on using fewer instruments well rather than many instruments poorly. Learn about reverb and EQ basics.</li>
+          <li><strong>Design:</strong> Study systems design: how does resource management (health, ammo, currency) create interesting decisions? Analyze one game with interconnected economy systems.</li>
+        </ul>
+
+        <div class="sub-section-title">Weeks 27&ndash;28 &mdash; Systems-Driven Game + Mini Soundtrack</div>
+        <ul class="plain-list">
+          <li><strong>Godot:</strong> Build a game where at least 2 systems interact: e.g., a resource that fuels both health and a special ability, forcing the player to make tradeoff decisions. Use Custom Resources for data-driven design (item definitions, enemy stats).</li>
+          <li><strong>Art:</strong> Create all art for this project using a single, strict palette. Document your choices in a one-page style guide: palette, scale, outline rules, shading direction. This is practice for Year 2.</li>
+          <li><strong>Music:</strong> Compose 2 more tracks for this game: a "gameplay" loop and a "danger/boss" loop. You now have a 3-track mini-soundtrack. Practice mixing: balance volumes so music sits behind SFX.</li>
+          <li><strong>Design:</strong> Ship the game. Write a retrospective focused on systems: did the interconnection create meaningful player choices? What would you add with 2 more weeks?</li>
+        </ul>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Month 7 Milestone:</strong> First shader effects implemented. First game with interconnected systems. First 3-track original soundtrack. First art style guide written. ~9 games shipped.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MONTH 8 -->
+    <div class="phase phase-teal">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">MONTH 8</div><div class="phase-title">Narrative Design & Advanced Animation</div><div class="phase-timeline">Q3 &middot; ~12 hrs/week</div></div>
+        <div class="phase-toggle">&#9662;</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-goal">Goal: Build a game with story elements (dialogue, narrative framing). Push animation skills to attack cycles and multi-frame character work.</div>
+
+        <div class="sub-section-title">Weeks 29&ndash;30 &mdash; Dialogue System & Story Game</div>
+        <ul class="plain-list">
+          <li><strong>Godot:</strong> Implement a dialogue system: a JSON or Resource-based dialogue tree with branching. Display it in a styled dialogue box UI. Build a short narrative experience (3&ndash;5 minutes) around it &mdash; a single NPC interaction with 2&ndash;3 choices that lead to different outcomes.</li>
+          <li><strong>Art:</strong> Draw character portraits for dialogue (48x48 or 64x64). Create 2&ndash;3 expressions per character (neutral, happy, angry). Practice conveying emotion at small scale &mdash; eyebrow position and mouth shape are the key levers.</li>
+          <li><strong>Music:</strong> Compose an ambient, atmospheric track &mdash; something that supports dialogue without competing with it. Minimal melody, focus on texture and pad sounds. Learn about sidechain compression (duck music volume when SFX play).</li>
+          <li><strong>Design:</strong> Study narrative design in games: how does Undertale use dialogue as a game mechanic? How does Disco Elysium make conversation the core loop? You're not building these &mdash; just analyzing the design space.</li>
+        </ul>
+
+        <div class="sub-section-title">Weeks 31&ndash;32 &mdash; Attack Animation & Combat Polish</div>
+        <ul class="plain-list">
+          <li><strong>Godot:</strong> Add combat to the narrative game, or build a separate combat-focused prototype. Implement: attack with anticipation &rarr; action &rarr; follow-through, hitboxes using Area2D, knockback on enemies, and hitstop on impact.</li>
+          <li><strong>Art:</strong> Animate a 4&ndash;5 frame attack cycle. Focus on the principles: strong anticipation pose (windup), fast action frames (1&ndash;2 frames), slow follow-through. Study "The Animator's Survival Kit" chapters on timing. Draw a hit effect spritesheet (3&ndash;4 frames).</li>
+          <li><strong>Music:</strong> Write a "combat" track: higher energy, driving rhythm. Study how Hollow Knight's OST transitions between exploration calm and boss intensity. Implement the transition in Godot.</li>
+          <li><strong>Design:</strong> Ship the game. Playtest the dialogue system &mdash; do players read the text? Do they feel their choices matter? Write a retrospective.</li>
+        </ul>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Month 8 Milestone:</strong> First dialogue system built. Character portraits with expressions drawn. First attack animation with proper anticipation/action/follow-through. ~10 games shipped.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MONTH 9 -->
+    <div class="phase phase-teal">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">MONTH 9</div><div class="phase-title">Game Jam #3 & Pre-Production Skills</div><div class="phase-timeline">Q3 &middot; ~12&ndash;15 hrs/week</div></div>
+        <div class="phase-toggle">&#9662;</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-goal">Goal: Third game jam. Start thinking about your Q4 "real" game. Build the pre-production habits (GDDs, scope documents, style guides) you'll need.</div>
+
+        <div class="sub-section-title">Weeks 33&ndash;34 &mdash; Game Jam #3 + Scope Calibration</div>
+        <ul class="plain-list">
+          <li><strong>Jam:</strong> Third game jam. This time, set a scope target before the jam starts: "I will have exactly 1 mechanic, 3 levels, original art, and one music track." Practice disciplined scoping under pressure.</li>
+          <li><strong>After jam:</strong> Rate and review at least 20 other jam entries. Study what makes jam games succeed: immediate clarity, tight scope, one polished mechanic.</li>
+          <li><strong>Design:</strong> Brainstorm 5 game ideas for your Q4 project. For each, write a one-sentence pitch, a core loop description, and an honest scope estimate. Rank them by "most achievable in 6 weeks."</li>
+        </ul>
+
+        <div class="sub-section-title">Weeks 35&ndash;36 &mdash; Pre-Production Practice & Technical Prep</div>
+        <ul class="plain-list">
+          <li><strong>Godot:</strong> Build a "starter template" project with your best-practice architecture: an Autoload signal bus, save/load system, audio bus setup, scene transition system, and a basic UI framework. You'll clone this to start Q4.</li>
+          <li><strong>Art:</strong> For your top-ranked Q4 game idea, create an art direction mockup: draw a single game screen with final-quality art showing the player, one enemy, the environment, and UI. This is your visual target.</li>
+          <li><strong>Music:</strong> Compose a "mood piece" for your Q4 game &mdash; a 1-minute track that captures the emotional tone you're targeting. It doesn't need to be final; it's a reference for the feel you want.</li>
+          <li><strong>Design:</strong> Write a full 2&ndash;3 page GDD for your Q4 project. Include: core fantasy, core loop, mechanics list (then cut half of them), level/content plan, art style description, audio plan, and a week-by-week production schedule.</li>
+        </ul>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Q2&ndash;Q3 Complete:</strong> ~11 games shipped. Three game jams entered. Shader skills, procedural generation, dialogue systems, state machines, and intermediate animation all in your toolkit. DAW transition complete. Ready for your first "real" game project. You now build in weeks what took months at the start.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" style="margin: 40px 0;">
+
+    <!-- MONTH 10 -->
+    <div class="phase phase-rose">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">MONTH 10</div><div class="phase-title">The Real Game &mdash; Vertical Slice</div><div class="phase-timeline">Q4 &middot; ~15 hrs/week</div></div>
+        <div class="phase-toggle">&#9662;</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-goal">Goal: Build a fully polished vertical slice &mdash; one complete level with final art, audio, and game feel. This slice should be playable as a standalone demo.</div>
+
+        <div class="sub-section-title">Week 37 &mdash; Architecture & Grey-Box</div>
+        <ul class="plain-list">
+          <li><strong>Godot:</strong> Clone your starter template. Set up the project structure: folder hierarchy, scene tree plan, signal graph diagram. Build the core mechanic as a grey-box prototype. By Friday, the core loop should be playable with placeholder art.</li>
+          <li><strong>Art:</strong> Finalize your palette and art style guide. Draw the player character (all animation states: idle, walk, action). Don't start environment art yet &mdash; get the character right first.</li>
+          <li><strong>Music:</strong> Refine your mood piece into the main gameplay track. Focus on loop quality &mdash; the seam must be inaudible.</li>
+          <li><strong>Design:</strong> Playtest the grey-box prototype with 2 people. Is the core mechanic fun without any art or sound? If not, iterate on the mechanic before investing in assets.</li>
+        </ul>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Week 37 Milestone:</strong> Grey-box prototype is fun (or at least interesting). Player character fully animated. Project architecture clean and scalable.</div>
+        </div>
+
+        <div class="sub-section-title">Week 38 &mdash; Level Design & Environment Art</div>
+        <ul class="plain-list">
+          <li><strong>Godot:</strong> Design the vertical slice level on paper first (sketch the layout, mark teaching moments, difficulty progression). Build it in TileMap. Implement the level's enemy encounters and interactive elements.</li>
+          <li><strong>Art:</strong> Create the full tileset for this level. Draw all enemy sprites with idle and attack animations. Create environmental details (decorations, foreground/background elements). Everything should match your style guide.</li>
+          <li><strong>Music:</strong> Generate all SFX using BFXR or Chiptone. Implement audio buses and pitch randomization. Ensure every player action has audio feedback.</li>
+          <li><strong>Design:</strong> Apply the 10-Level Design Challenge principles: does each section of your level teach one thing? Walk through it mentally as a first-time player.</li>
+        </ul>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Week 38 Milestone:</strong> One complete level playable with final art. All enemies animated. All SFX integrated. Level teaches its mechanics through environment.</div>
+        </div>
+
+        <div class="sub-section-title">Weeks 39&ndash;40 &mdash; Polish to Demo Quality</div>
+        <ul class="plain-list">
+          <li><strong>Godot:</strong> Add all juice: screen shake, particles, hitstop, Tween animations. Implement title screen, pause menu, and end-of-level screen. Add shader effects where they enhance the visual style. This vertical slice should feel <em>finished</em>.</li>
+          <li><strong>Art:</strong> Create UI elements: health display, score/progress indicator, menu graphics. Draw a parallax background. Create a game logo.</li>
+          <li><strong>Music:</strong> Compose a menu theme. Ensure smooth transitions between menu &rarr; gameplay. Mix all audio so music and SFX coexist cleanly.</li>
+          <li><strong>Design:</strong> Playtest the vertical slice with 3 people. Take notes on every moment of confusion, frustration, or delight. Prioritize fixes: clarity issues first, difficulty tuning second, nice-to-haves last.</li>
+        </ul>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Month 10 Milestone:</strong> Vertical slice complete and polished. One level that looks, sounds, and plays like a finished game. Playtested by 3+ people. This is the quality bar for the rest of the project.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MONTH 11 -->
+    <div class="phase phase-rose">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">MONTH 11</div><div class="phase-title">The Real Game &mdash; Content Expansion</div><div class="phase-timeline">Q4 &middot; ~15 hrs/week</div></div>
+        <div class="phase-toggle">&#9662;</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-goal">Goal: Expand beyond the vertical slice. Add remaining levels/content. Maintain the quality bar set by the slice. Resist scope creep ferociously.</div>
+
+        <div class="sub-section-title">Week 41 &mdash; Level/Content Expansion</div>
+        <ul class="plain-list">
+          <li><strong>Godot:</strong> Build levels 2&ndash;3 (or equivalent content if not a level-based game). Each should introduce one new element: a new enemy type, a new mechanic variation, or a new environmental hazard. Reuse your existing systems &mdash; do not build new frameworks.</li>
+          <li><strong>Art:</strong> Draw new assets only where the design requires them (new enemy, new tile variant). Reuse and recombine existing assets aggressively. Palette-swap enemies rather than drawing from scratch.</li>
+          <li><strong>Music:</strong> If the game needs a second music zone/mood, compose one more track. Otherwise, refine existing audio. Add AudioStreamRandomizer to footsteps and any repeated sounds.</li>
+          <li><strong>Design:</strong> Check your GDD's scope against reality. Are you on track? What features from the "maybe later" list are you tempted to add? Don't add them.</li>
+        </ul>
+
+        <div class="sub-section-title">Week 42 &mdash; More Content & Systems Polish</div>
+        <ul class="plain-list">
+          <li><strong>Godot:</strong> Build remaining content (levels 4&ndash;5 or equivalent). Implement a simple progression system if applicable (unlocks, score tracking, difficulty curve). Ensure save/load works across all content.</li>
+          <li><strong>Art:</strong> Create any remaining unique assets. Draw a "game complete" screen. Create 3&ndash;4 screenshots that showcase the game's best moments &mdash; you'll need these for itch.io.</li>
+          <li><strong>Music:</strong> Compose a short "victory" stinger and a "game over" stinger (5&ndash;10 seconds each). These bookend moments matter more than people expect.</li>
+          <li><strong>Design:</strong> Content-complete playtest with 2 new people (who haven't seen the game before). Watch the entire playthrough. Note pacing issues: where does it drag? Where does it spike unfairly?</li>
+        </ul>
+
+        <div class="sub-section-title">Weeks 43&ndash;44 &mdash; Bug Fixing & Difficulty Tuning</div>
+        <ul class="plain-list">
+          <li><strong>Godot:</strong> Feature freeze &mdash; no new features from this point forward. Fix every known bug. Tune difficulty: adjust enemy speeds, hit points, spawn rates based on playtest feedback. Test on web export &mdash; fix any HTML5-specific issues.</li>
+          <li><strong>Art:</strong> Final art polish pass. Fix any sprites that have inconsistent style, broken animations, or tiling artifacts. This is your last chance before ship.</li>
+          <li><strong>Music:</strong> Final audio mix. Play the full game with headphones. Adjust any moments where music or SFX are too loud/quiet relative to each other.</li>
+          <li><strong>Design:</strong> Final playtest with 2 more people (5 total across the project). Write a list of every piece of feedback. Implement the critical fixes only. Everything else goes in a "post-release" note.</li>
+        </ul>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Month 11 Milestone:</strong> Game is content-complete and feature-frozen. All known bugs fixed. Difficulty tuned from playtest feedback. 5 total playtests completed. Ready for release prep.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MONTH 12 -->
+    <div class="phase phase-rose">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">MONTH 12</div><div class="phase-title">The Real Game &mdash; Ship It</div><div class="phase-timeline">Q4 &middot; ~10 hrs/week</div></div>
+        <div class="phase-toggle">&#9662;</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-goal">Goal: Release your most polished game. Build proper marketing materials. Write a Year 1 retrospective. Plan Year 2.</div>
+
+        <div class="sub-section-title">Week 45 &mdash; Release Preparation</div>
+        <ul class="plain-list">
+          <li><strong>Godot:</strong> Final export: HTML5 (primary), Windows, Mac if possible. Test the web build in 3 different browsers. Verify save/load works in the web build (localStorage). Test with a fresh browser profile to simulate a first-time player.</li>
+          <li><strong>Art:</strong> Create all marketing assets: itch.io cover image (630&times;500), 4&ndash;6 screenshots showing different moments, a GIF or short video clip of gameplay (use OBS or Godot's built-in recording).</li>
+          <li><strong>Music:</strong> Create a 30-second "trailer cut" of your best music moment. If making a video trailer, this is your soundtrack.</li>
+          <li><strong>Writing:</strong> Write the itch.io page: a compelling 2&ndash;3 sentence hook, a feature list, controls description, and credits. Look at successful itch.io pages for formatting inspiration.</li>
+        </ul>
+
+        <div class="sub-section-title">Week 46 &mdash; Launch</div>
+        <ul class="plain-list">
+          <li><strong>Ship:</strong> Upload to itch.io. Set pricing (free or pay-what-you-want). <strong>Publish.</strong></li>
+          <li><strong>Share:</strong> Post to relevant subreddits (r/indiegames, r/godot, r/pixelart). Post in the game dev communities you've been lurking in. Share in any Discord servers you're part of. Ask for feedback, not praise.</li>
+          <li><strong>Respond:</strong> Reply to every comment and piece of feedback within 48 hours. Thank people for playing. Ask specific questions: "Was the difficulty curve fair?" "Did you understand the mechanic immediately?"</li>
+        </ul>
+
+        <div class="sub-section-title">Weeks 47&ndash;48 &mdash; Year 1 Retrospective & Year 2 Planning</div>
+        <ul class="plain-list">
+          <li><strong>Retrospective:</strong> Write a comprehensive Year 1 retrospective (1,000+ words). Cover: total games shipped, skills gained per track, biggest surprises, biggest failures, what you'd tell yourself 12 months ago. Save this &mdash; you'll want to read it in Year 2.</li>
+          <li><strong>Portfolio review:</strong> Look at all your itch.io games in order. The progression should be visible. This is your proof of growth.</li>
+          <li><strong>Year 2 planning:</strong> Brainstorm your Year 2 project. Start with: what genre, what scope (target 6&ndash;9 months), what's your unique angle. Write a one-page concept document. Do not start building yet.</li>
+          <li><strong>Rest:</strong> Take at least one full week off from game dev. You've earned it. Creative rest is productive &mdash; your brain will process and consolidate a year of learning.</li>
+        </ul>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Year 1 Complete:</strong> 12+ games shipped (including 3 jam entries and 1 polished "real" game). Daily art habit, weekly music composition, design analysis on every project. You can build, art, score, and ship a game independently. You have a public portfolio on itch.io. You are no longer an aspiring game dev. You are a game dev who aspires to be better.</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" style="margin: 40px 0;">
+
+    <!-- YEAR 2 -->
+    <div class="phase phase-purple">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">YEAR 2 / PHASE 1</div><div class="phase-title">Pre-Production &mdash; Design & Prototype</div><div class="phase-timeline">Months 13&ndash;15 &middot; ~15 hrs/week</div></div>
+        <div class="phase-toggle">&#9662;</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-goal">Goal: Design your Year 2 game thoroughly before committing to production. Validate the concept with a grey-box prototype and external feedback on the GDD.</div>
+
+        <div class="sub-section-title">Month 13 &mdash; Concept & GDD</div>
+        <ul class="plain-list">
+          <li><strong>Week 1:</strong> Research phase. Play 5 games in your target genre analytically. For each, write a 200-word breakdown of: core loop, what works, what doesn't, and what you'd steal/improve.</li>
+          <li><strong>Week 2:</strong> Write a comprehensive GDD (5&ndash;8 pages). Include: core fantasy, core loop, complete mechanics list, level/content plan, art direction (with reference images), audio direction, and a week-by-week production schedule for 6 months. Then cut 30% of the features.</li>
+          <li><strong>Week 3:</strong> Share the GDD with 3 people whose opinions you trust (other devs, game-literate friends, online communities). Collect feedback. Revise. Focus on: is the scope realistic? Is the core mechanic clear?</li>
+          <li><strong>Week 4:</strong> Create a detailed art style guide: palette (locked), character proportions, tile scale, animation frame counts, UI style. Create a music mood board: 5&ndash;10 reference tracks that capture the emotional range you're targeting.</li>
+        </ul>
+
+        <div class="sub-section-title">Month 14 &mdash; Grey-Box Prototype</div>
+        <ul class="plain-list">
+          <li><strong>Week 1:</strong> Build the core mechanic as a grey-box prototype. No art, no sound. Just the core loop. Is it engaging with zero visual or audio polish? If not, iterate on the design, not the presentation.</li>
+          <li><strong>Week 2:</strong> Add the secondary mechanics. Test how they interact with the core loop. Playtest with 3 people. Record the sessions if possible &mdash; watching replays reveals things live observation misses.</li>
+          <li><strong>Week 3:</strong> Build one complete grey-box level/area. Test the full player journey: onboarding &rarr; skill development &rarr; challenge &rarr; resolution. Does the difficulty curve feel intentional?</li>
+          <li><strong>Week 4:</strong> <strong>Kill/Commit decision.</strong> Based on prototype and playtest results, either commit to this project for the next 6 months or kill it and return to Month 13 with a new concept. Killing a project here saves months of wasted production. Be honest.</li>
+        </ul>
+
+        <div class="sub-section-title">Month 15 &mdash; Technical Architecture & Art Pipeline</div>
+        <ul class="plain-list">
+          <li><strong>Week 1:</strong> Define the full technical architecture: scene tree hierarchy, signal graph, data flow (what's in Resources, what's in Autoloads, what's in scene scripts). Write it down. This document prevents architectural drift.</li>
+          <li><strong>Week 2:</strong> Build the production project from your starter template. Implement the core systems: player controller, camera, UI framework, save/load, audio bus structure. No content yet &mdash; just infrastructure.</li>
+          <li><strong>Week 3:</strong> Create the player character at final quality: all animation states, all directions. This is your quality benchmark. Every other sprite should match this level of polish.</li>
+          <li><strong>Week 4:</strong> Start a devlog on itch.io. Post your first entry: the game concept, an art preview, and your production timeline. Post weekly from now on. Start building your audience before you ship.</li>
+        </ul>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Pre-Production Complete:</strong> Comprehensive GDD reviewed by 3 people. Grey-box prototype validated by playtests. Technical architecture documented. Art pipeline established with style guide. Devlog started. You are building on a foundation, not improvising.</div>
+        </div>
       </div>
     </div>
 
     <div class="phase phase-purple">
       <div class="phase-header" onclick="togglePhase(this)">
-        <div><div class="phase-num">YEAR 2</div><div class="phase-title">Towards a Real Steam Release</div></div>
+        <div><div class="phase-num">YEAR 2 / PHASE 2</div><div class="phase-title">Production &mdash; Build the Game</div><div class="phase-timeline">Months 16&ndash;20 &middot; ~15&ndash;20 hrs/week</div></div>
         <div class="phase-toggle">&#9662;</div>
       </div>
       <div class="phase-body">
-        <div class="phase-goal">One project you're willing to stand behind publicly. 6&ndash;9 months of production. The second half is polishing, marketing basics, and release.</div>
+        <div class="phase-goal">Goal: Build the full game in 2-week sprints. Each sprint has a testable deliverable. Vertical slice first, then expand. Weekly devlog posts.</div>
+
+        <div class="sub-section-title">Month 16 &mdash; Vertical Slice (Final Quality)</div>
         <ul class="plain-list">
-          <li><strong>Design:</strong> 2&ndash;4 weeks on a comprehensive GDD. Get feedback from 3 people on the design doc before a single line of code.</li>
-          <li><strong>Godot:</strong> Architecture first. Define your scene hierarchy, signal graph, and data flow before prototyping.</li>
-          <li><strong>Art:</strong> Consistent visual language &mdash; palette, scale, outline style &mdash; documented in a style guide you refer to throughout development.</li>
-          <li><strong>Music:</strong> Original soundtrack. Minimum 3 tracks. Adaptive audio for at least one game state transition.</li>
-          <li><strong>Marketing:</strong> Start a devlog on itch.io and Reddit from day one. Weekly GIFs of progress. Build your audience before you ship.</li>
-          <li><strong>Release:</strong> Steam if the game justifies it. itch.io always. Build a press kit: screenshots, trailer, description, credits.</li>
+          <li><strong>Weeks 1&ndash;2:</strong> Build the first level/area at final quality: all art, all animation, all audio, all juice, all UI. This is your production vertical slice. It should be demo-releasable on its own.</li>
+          <li><strong>Weeks 3&ndash;4:</strong> Playtest the slice with 5 people. Record every issue. Fix critical problems. Post a devlog with a gameplay GIF. This is your quality bar &mdash; nothing ships below this standard.</li>
         </ul>
+
+        <div class="sub-section-title">Month 17 &mdash; Content Sprint 1</div>
+        <ul class="plain-list">
+          <li><strong>Weeks 1&ndash;2:</strong> Sprint 1: Build content block 2 (next level, area, or chapter). New enemies, new environmental challenges, new tile variants. Playtest at end of sprint.</li>
+          <li><strong>Weeks 3&ndash;4:</strong> Sprint 2: Build content block 3. Compose the second music track. Post devlog with progress screenshots and a short playtest video.</li>
+        </ul>
+
+        <div class="sub-section-title">Month 18 &mdash; Content Sprint 2 + Midpoint Check</div>
+        <ul class="plain-list">
+          <li><strong>Weeks 1&ndash;2:</strong> Sprint 3: Build content block 4. Add any remaining core systems (progression, unlocks, score tracking). Feature freeze approaching &mdash; this is your last sprint for new mechanics.</li>
+          <li><strong>Weeks 3&ndash;4:</strong> <strong>Midpoint review.</strong> Play through the entire game start to finish. Evaluate: is the scope still achievable in the remaining time? Cut anything that isn't working. This is your last chance to descope without panic. Compose third music track.</li>
+        </ul>
+
+        <div class="sub-section-title">Month 19 &mdash; Final Content & Feature Freeze</div>
+        <ul class="plain-list">
+          <li><strong>Weeks 1&ndash;2:</strong> Sprint 4: Build final content block(s). Complete all level design. All enemies and mechanics implemented. All art assets created.</li>
+          <li><strong>Weeks 3&ndash;4:</strong> <strong>Feature freeze.</strong> No new mechanics, enemies, or systems. Only: bug fixes, difficulty tuning, polish, and audio integration. Compose any remaining music (victory theme, credits music). Post devlog announcing the game is content-complete.</li>
+        </ul>
+
+        <div class="sub-section-title">Month 20 &mdash; Polish & Playtesting</div>
+        <ul class="plain-list">
+          <li><strong>Weeks 1&ndash;2:</strong> Polish sprint: add particles, shader effects, Tween animations, screen transitions, and any visual/audio details that elevate the experience. Fix every known bug.</li>
+          <li><strong>Weeks 3&ndash;4:</strong> Playtest with 5&ndash;8 people (mix of game devs and non-devs). This is your most important round of testing. Prioritize feedback ruthlessly: game-breaking &gt; confusing &gt; annoying &gt; nice-to-have. Fix the top tier only.</li>
+        </ul>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Production Complete:</strong> Game is content-complete, feature-frozen, and playtested by 10+ people. All art original. All audio original. Devlog has 15+ weekly entries building an audience. You are ready to ship.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase phase-purple">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">YEAR 2 / PHASE 3</div><div class="phase-title">Release &mdash; Ship, Market, Reflect</div><div class="phase-timeline">Months 21&ndash;24 &middot; ~10&ndash;15 hrs/week</div></div>
+        <div class="phase-toggle">&#9662;</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-goal">Goal: Release the game publicly. Build marketing materials. If the game warrants it, consider Steam. Write a comprehensive Year 2 retrospective.</div>
+
+        <div class="sub-section-title">Month 21 &mdash; Release Prep & Launch</div>
+        <ul class="plain-list">
+          <li><strong>Week 1:</strong> Build a press kit: 6&ndash;10 polished screenshots, a 30&ndash;60 second trailer (OBS + your best gameplay + your best music), a game description (50 words, 150 words, and 500 words), and a factsheet (genre, platform, dev name, release date).</li>
+          <li><strong>Week 2:</strong> Finalize itch.io page: upload all builds (Web, Windows, Mac), add screenshots, trailer, description, and credits. Set pricing. If going to Steam, submit the store page and Steamworks build now ($100 fee).</li>
+          <li><strong>Week 3:</strong> <strong>Launch week.</strong> Publish on itch.io. Post to: r/indiegames, r/godot, r/pixelart, relevant genre subreddits, Twitter/Bluesky with gameplay GIF, any Discord communities you're in. Post a launch devlog.</li>
+          <li><strong>Week 4:</strong> Respond to all feedback. Fix any critical bugs discovered post-launch. Push a patch within the first week if needed. Thank everyone who plays.</li>
+        </ul>
+
+        <div class="sub-section-title">Month 22 &mdash; Post-Launch & Steam (Optional)</div>
+        <ul class="plain-list">
+          <li><strong>Weeks 1&ndash;2:</strong> If launching on Steam: finalize store page, configure achievements if applicable, submit for review. Continue community engagement on itch.io. Write a post-mortem devlog: what went right, what went wrong, player feedback themes.</li>
+          <li><strong>Weeks 3&ndash;4:</strong> Optional small update based on consistent player feedback (difficulty adjustment, quality-of-life fix). Not new content &mdash; just refinement. Start processing what you learned.</li>
+        </ul>
+
+        <div class="sub-section-title">Months 23&ndash;24 &mdash; Retrospective & What's Next</div>
+        <ul class="plain-list">
+          <li><strong>Retrospective:</strong> Write a comprehensive Year 2 retrospective (2,000+ words). Compare to your Year 1 retrospective. How has your design thinking changed? Your art quality? Your music composition? Your ability to scope and ship?</li>
+          <li><strong>Skills audit:</strong> Rate yourself 1&ndash;5 in each track: Design, Godot, Art, Music, Shipping. Where are you weakest? What would have the highest impact to improve for your next project?</li>
+          <li><strong>Next steps:</strong> You have shipped a real game that you can stand behind. You have a portfolio, a devlog, community connections, and proven skills in five disciplines. Whether your next step is a larger game, a jam-focused year, or learning a new engine &mdash; you now have the foundation to make that choice from experience, not aspiration.</li>
+          <li><strong>Rest again:</strong> Take 2&ndash;4 weeks fully off. Then start the cycle again &mdash; better, faster, and with calibrated ambition.</li>
+        </ul>
+        <div class="callout">
+          <div class="callout-icon">&#9745;</div>
+          <div class="callout-body"><strong>Year 2 Complete:</strong> One polished, publicly released game with original art, music, and design. A press kit and marketing materials. 15+ devlog entries. Community engagement. Two comprehensive retrospectives documenting your growth. You've done what most aspiring solo devs never do: you finished something real, and you did it twice.</div>
+        </div>
       </div>
     </div>
   </div>
