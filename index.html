@@ -20,9 +20,11 @@
     --text: #d4d4e8;
     --text-dim: #7a7a9a;
     --text-bright: #f0f0ff;
+    --sidebar-w: 220px;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
 
   body {
     background: var(--bg);
@@ -43,7 +45,148 @@
     opacity: 0.4;
   }
 
-  .page { max-width: 900px; margin: 0 auto; padding: 48px 24px 120px; }
+  /* ── Sidebar Nav ── */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-w);
+    height: 100vh;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 24px 0;
+    overflow-y: auto;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar-title {
+    font-family: 'Fraunces', serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-bright);
+    padding: 0 20px 16px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .sidebar-nav { list-style: none; flex: 1; overflow-y: auto; }
+  .sidebar-nav li { margin: 0; }
+  .sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 20px;
+    font-size: 11px;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: all 0.2s;
+    border-left: 2px solid transparent;
+    line-height: 1.4;
+  }
+  .sidebar-nav a:hover {
+    color: var(--text);
+    background: var(--surface2);
+  }
+  .sidebar-nav a.active {
+    color: var(--text-bright);
+    border-left-color: var(--accent-gold);
+    background: rgba(232, 200, 74, 0.05);
+  }
+  .sidebar-nav .nav-icon {
+    font-size: 13px;
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .sidebar-nav .nav-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 8px 20px;
+  }
+
+  .sidebar-actions {
+    padding: 12px 20px;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+  }
+  .btn-collapse-all {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    padding: 6px 12px;
+    cursor: pointer;
+    letter-spacing: 0.08em;
+    width: 100%;
+    transition: all 0.2s;
+  }
+  .btn-collapse-all:hover {
+    color: var(--text);
+    border-color: var(--text-dim);
+  }
+
+  /* ── Mobile nav toggle ── */
+  .mobile-nav-toggle {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 48px;
+    height: 48px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--accent-gold);
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    transition: transform 0.2s;
+  }
+  .mobile-nav-toggle:hover { transform: scale(1.1); }
+
+  /* ── Back to top ── */
+  .back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 40px;
+    height: 40px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s;
+  }
+  .back-to-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .back-to-top:hover {
+    color: var(--accent-gold);
+    border-color: var(--accent-gold);
+  }
+
+  /* ── Page layout ── */
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 24px 120px;
+    margin-left: calc(var(--sidebar-w) + max((100vw - var(--sidebar-w) - 900px) / 2, 24px));
+  }
+
+  [id] { scroll-margin-top: 24px; }
 
   .hero { padding: 64px 0 48px; border-bottom: 1px solid var(--border); margin-bottom: 56px; }
   .hero-label { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--accent-teal); text-transform: uppercase; margin-bottom: 16px; }
@@ -68,6 +211,7 @@
   .section { margin-bottom: 72px; }
   .section-title { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--text-dim); text-transform: uppercase; margin-bottom: 32px; padding-left: 12px; border-left: 2px solid var(--border); }
 
+  /* ── Collapsible phases ── */
   .phase { background: var(--surface); border: 1px solid var(--border); margin-bottom: 24px; position: relative; overflow: hidden; }
   .phase::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
   .phase-gold::before { background: var(--accent-gold); }
@@ -76,18 +220,72 @@
   .phase-purple::before { background: var(--accent-purple); }
   .phase-blue::before { background: var(--accent-blue); }
 
-  .phase-header { padding: 20px 24px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+  .phase-header {
+    padding: 20px 24px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s;
+  }
+  .phase-header:hover { background: rgba(255,255,255,0.015); }
   .phase-num { font-family: 'Fraunces', serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; opacity: 0.5; }
   .phase-title { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 600; color: var(--text-bright); flex: 1; }
   .phase-timeline { font-size: 10px; color: var(--text-dim); letter-spacing: 0.1em; white-space: nowrap; margin-top: 4px; text-transform: uppercase; }
-  .phase-body { padding: 0 24px 24px; border-top: 1px solid var(--border); }
+
+  .phase-toggle {
+    color: var(--text-dim);
+    font-size: 14px;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+    margin-top: 6px;
+    width: 20px;
+    text-align: center;
+  }
+  .phase.collapsed .phase-toggle { transform: rotate(-90deg); }
+
+  .phase-body {
+    padding: 0 24px 24px;
+    border-top: 1px solid var(--border);
+    max-height: 5000px;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+  }
+  .phase.collapsed .phase-body {
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-top-color: transparent;
+    opacity: 0;
+  }
+
   .phase-goal { font-size: 12px; color: var(--text-dim); padding: 16px 0; line-height: 1.8; border-bottom: 1px solid var(--border); margin-bottom: 20px; font-style: italic; }
 
   .resource-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin: 16px 0; }
   .resource { background: var(--bg); border: 1px solid var(--border); padding: 14px 16px; }
   .resource-type { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
   .resource-name { font-size: 12px; color: var(--text-bright); font-weight: 700; margin-bottom: 4px; }
+  .resource-name a {
+    color: var(--text-bright);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .resource-name a:hover {
+    color: var(--accent-teal);
+    border-bottom-color: var(--accent-teal);
+  }
   .resource-desc { font-size: 11px; color: var(--text-dim); line-height: 1.6; }
+  .resource-desc a {
+    color: var(--accent-teal);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--accent-teal);
+    transition: opacity 0.2s;
+  }
+  .resource-desc a:hover { opacity: 0.8; }
   .resource-tag { display: inline-block; font-size: 9px; padding: 2px 6px; border: 1px solid; margin-top: 8px; letter-spacing: 0.1em; text-transform: uppercase; }
   .tag-free { color: var(--accent-teal); border-color: var(--accent-teal); }
   .tag-paid { color: var(--accent-gold); border-color: var(--accent-gold); }
@@ -113,8 +311,18 @@
   .toc { background: var(--surface); border: 1px solid var(--border); padding: 24px 28px; margin-bottom: 56px; }
   .toc h3 { font-family: 'Fraunces', serif; font-weight: 600; color: var(--text-bright); margin-bottom: 16px; font-size: 16px; }
   .toc-list { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 32px; }
-  .toc-item { font-size: 11px; color: var(--text-dim); display: flex; gap: 10px; align-items: center; }
-  .toc-item::before { content: '→'; color: var(--accent-gold); font-size: 10px; }
+  .toc-item { font-size: 11px; display: flex; gap: 10px; align-items: center; }
+  .toc-item::before { content: ''; }
+  .toc-item a {
+    color: var(--text-dim);
+    text-decoration: none;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    transition: color 0.2s;
+  }
+  .toc-item a::before { content: '\2192'; color: var(--accent-gold); font-size: 10px; }
+  .toc-item a:hover { color: var(--text-bright); }
 
   .domain-design .track-icon { color: var(--accent-gold); border-color: var(--accent-gold); }
   .domain-godot .track-icon { color: var(--accent-teal); border-color: var(--accent-teal); }
@@ -128,85 +336,139 @@
 
   ul.plain-list { list-style: none; margin: 12px 0; }
   ul.plain-list li { padding: 5px 0; padding-left: 16px; position: relative; font-size: 12px; color: var(--text-dim); line-height: 1.7; }
-  ul.plain-list li::before { content: '·'; position: absolute; left: 0; color: var(--text-dim); }
+  ul.plain-list li::before { content: '\00B7'; position: absolute; left: 0; color: var(--text-dim); }
   ul.plain-list li strong { color: var(--text); }
 
   .sub-section-title { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); margin: 20px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
 
+  /* ── Responsive ── */
+  @media (max-width: 1100px) {
+    .sidebar { display: none; }
+    .sidebar.open { display: flex; }
+    .mobile-nav-toggle { display: flex; }
+    .page {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
   @media (max-width: 600px) {
     .toc-list { grid-template-columns: 1fr; }
     .resource-grid { grid-template-columns: 1fr; }
+    .sidebar.open {
+      width: 260px;
+      box-shadow: 4px 0 30px rgba(0,0,0,0.6);
+    }
   }
+
+  /* ── Sidebar overlay for mobile ── */
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 99;
+  }
+  .sidebar-overlay.active { display: block; }
 </style>
 </head>
 <body>
+
+<!-- Sidebar Navigation -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-title">Solo Game Dev<br>A Long Arc Guide</div>
+  <ul class="sidebar-nav">
+    <li><a href="#top" data-section="top"><span class="nav-icon">~</span> Overview</a></li>
+    <li><div class="nav-divider"></div></li>
+    <li><a href="#track-0" data-section="track-0"><span class="nav-icon">&#9881;</span> 0 &mdash; Mindset & Setup</a></li>
+    <li><a href="#track-1" data-section="track-1"><span class="nav-icon">&#9823;</span> 1 &mdash; Game Design</a></li>
+    <li><a href="#track-2" data-section="track-2"><span class="nav-icon">&#9672;</span> 2 &mdash; Godot</a></li>
+    <li><a href="#track-3" data-section="track-3"><span class="nav-icon">&#9635;</span> 3 &mdash; Pixel Art</a></li>
+    <li><a href="#track-4" data-section="track-4"><span class="nav-icon">&#9834;</span> 4 &mdash; Music & Sound</a></li>
+    <li><a href="#track-5" data-section="track-5"><span class="nav-icon">&#11041;</span> 5 &mdash; Shipping</a></li>
+    <li><div class="nav-divider"></div></li>
+    <li><a href="#roadmaps" data-section="roadmaps"><span class="nav-icon">&#9681;</span> Roadmaps</a></li>
+    <li><a href="#failures" data-section="failures"><span class="nav-icon">&#10005;</span> Failure Modes</a></li>
+    <li><a href="#toolbox" data-section="toolbox"><span class="nav-icon">&#8862;</span> Toolbox</a></li>
+  </ul>
+  <div class="sidebar-actions">
+    <button class="btn-collapse-all" id="collapseAllBtn" onclick="toggleAllPhases()">Collapse All Sections</button>
+  </div>
+</nav>
+
+<!-- Mobile nav toggle -->
+<button class="mobile-nav-toggle" id="mobileNavBtn" onclick="toggleMobileNav()" aria-label="Toggle navigation">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleMobileNav()"></div>
+
+<!-- Back to top -->
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0})" aria-label="Back to top">&uarr;</button>
+
 <div class="page">
 
-  <div class="hero">
+  <div class="hero" id="top">
     <div class="hero-label">A Long-Arc Guide</div>
     <h1>Making <em>Games</em><br>as One Person</h1>
-    <p class="hero-desc">A structured, multi-year path through game design, Godot, pixel art, and music composition — built for someone who can code but has never shipped a game or touched a brush.</p>
+    <p class="hero-desc">A structured, multi-year path through game design, Godot, pixel art, and music composition &mdash; built for someone who can code but has never shipped a game or touched a brush.</p>
     <div class="hero-meta">
       <div class="hero-stat"><span class="hero-stat-val">~2yr</span><span class="hero-stat-label">To first real game</span></div>
       <div class="hero-stat"><span class="hero-stat-val">5</span><span class="hero-stat-label">Parallel skill tracks</span></div>
-      <div class="hero-stat"><span class="hero-stat-val">∞</span><span class="hero-stat-label">Small games first</span></div>
+      <div class="hero-stat"><span class="hero-stat-val">&infin;</span><span class="hero-stat-label">Small games first</span></div>
     </div>
   </div>
 
   <div class="philosophy">
     <h3>Core Philosophy of This Guide</h3>
-    <p>The most dangerous trap for solo devs is <strong>scope delusion</strong> — believing you can learn everything in parallel while building your dream game. You cannot. This guide is built around a different principle: <strong>skills compound when you finish things, not when you learn things.</strong></p>
-    <p>Every phase ends with a completed, shipped artifact — however small. You will make ugly games. They will have bad music and worse art. Ship them anyway. The muscle memory of finishing is the skill that most aspiring solo devs never build, and it is the prerequisite for everything else.</p>
-    <p>The five tracks — Game Design, Godot, Art, Music, and Shipping — are taught in parallel but with deliberately mismatched pacing. Art and music require years of slow accumulation. Design requires theory plus many finished experiments. Godot is your fastest ramp because you already know how to think computationally.</p>
+    <p>The most dangerous trap for solo devs is <strong>scope delusion</strong> &mdash; believing you can learn everything in parallel while building your dream game. You cannot. This guide is built around a different principle: <strong>skills compound when you finish things, not when you learn things.</strong></p>
+    <p>Every phase ends with a completed, shipped artifact &mdash; however small. You will make ugly games. They will have bad music and worse art. Ship them anyway. The muscle memory of finishing is the skill that most aspiring solo devs never build, and it is the prerequisite for everything else.</p>
+    <p>The five tracks &mdash; Game Design, Godot, Art, Music, and Shipping &mdash; are taught in parallel but with deliberately mismatched pacing. Art and music require years of slow accumulation. Design requires theory plus many finished experiments. Godot is your fastest ramp because you already know how to think computationally.</p>
   </div>
 
   <div class="toc">
     <h3>Contents</h3>
     <div class="toc-list">
-      <div class="toc-item">Track 0 — Mindset & Setup</div>
-      <div class="toc-item">Track 1 — Game Design</div>
-      <div class="toc-item">Track 2 — Godot (Engine)</div>
-      <div class="toc-item">Track 3 — Pixel Art</div>
-      <div class="toc-item">Track 4 — Music & Sound</div>
-      <div class="toc-item">Track 5 — Finishing & Shipping</div>
-      <div class="toc-item">Year 1 Roadmap</div>
-      <div class="toc-item">Year 2 Roadmap</div>
-      <div class="toc-item">Toolbox Reference</div>
-      <div class="toc-item">Common Failure Modes</div>
+      <div class="toc-item"><a href="#track-0">Track 0 &mdash; Mindset & Setup</a></div>
+      <div class="toc-item"><a href="#track-1">Track 1 &mdash; Game Design</a></div>
+      <div class="toc-item"><a href="#track-2">Track 2 &mdash; Godot (Engine)</a></div>
+      <div class="toc-item"><a href="#track-3">Track 3 &mdash; Pixel Art</a></div>
+      <div class="toc-item"><a href="#track-4">Track 4 &mdash; Music & Sound</a></div>
+      <div class="toc-item"><a href="#track-5">Track 5 &mdash; Finishing & Shipping</a></div>
+      <div class="toc-item"><a href="#roadmaps">Year 1 & 2 Roadmaps</a></div>
+      <div class="toc-item"><a href="#failures">Common Failure Modes</a></div>
+      <div class="toc-item"><a href="#toolbox">Toolbox Reference</a></div>
     </div>
   </div>
 
   <!-- TRACK 0 -->
-  <div class="section">
-    <div class="section-title">Track 0 — Before You Start</div>
+  <div class="section" id="track-0">
+    <div class="section-title">Track 0 &mdash; Before You Start</div>
     <div class="track-header">
-      <div class="track-icon" style="color:#888; border-color:#444">⚙</div>
+      <div class="track-icon" style="color:#888; border-color:#444">&#9881;</div>
       <div><div class="track-sub">Foundation</div><h2>Mindset, Tools & The Right Mental Model</h2></div>
     </div>
 
     <div class="callout">
-      <div class="callout-icon">⚠</div>
+      <div class="callout-icon">&#9888;</div>
       <div class="callout-body"><strong>The hardest thing in solo game dev isn't learning the skills.</strong> It's calibrating scope. You will always want to make something larger than your current ability. The discipline of making something <em>smaller</em> than you think you need to is the foundational meta-skill. Every game you make should be completable within your current skill set.</div>
     </div>
 
     <div class="sub-section-title">Install These Immediately</div>
     <div class="resource-grid">
-      <div class="resource"><div class="resource-type">Engine</div><div class="resource-name">Godot 4.x</div><div class="resource-desc">godotengine.org — download the standard build. Don't overthink versions; use latest stable.</div><span class="resource-tag tag-free">Free</span></div>
-      <div class="resource"><div class="resource-type">Art Tool</div><div class="resource-name">Aseprite</div><div class="resource-desc">$20 on Steam or free if you compile from source. The industry standard for pixel art. Worth every cent.</div><span class="resource-tag tag-paid">$20</span></div>
-      <div class="resource"><div class="resource-type">SFX</div><div class="resource-name">BFXR / SFXR</div><div class="resource-desc">bfxr.net — browser-based retro sound effect generator. Perfect for early projects. Zero skill needed.</div><span class="resource-tag tag-free">Free</span></div>
-      <div class="resource"><div class="resource-type">Music (Beginner)</div><div class="resource-name">LMMS</div><div class="resource-desc">lmms.io — free DAW. Good enough for learning fundamentals before investing in anything else.</div><span class="resource-tag tag-free">Free</span></div>
-      <div class="resource"><div class="resource-type">Music (Later)</div><div class="resource-name">Ableton Live Lite</div><div class="resource-desc">Often bundled free with hardware. If you want a real DAW path eventually, Ableton's the best-documented for beginners.</div><span class="resource-tag tag-free">Free w/ Hardware</span></div>
-      <div class="resource"><div class="resource-type">Version Control</div><div class="resource-name">Git + GitHub</div><div class="resource-desc">Use it from day one. Godot projects are git-friendly. Back up every project.</div><span class="resource-tag tag-free">Free</span></div>
+      <div class="resource"><div class="resource-type">Engine</div><div class="resource-name"><a href="https://godotengine.org" target="_blank" rel="noopener">Godot 4.x</a></div><div class="resource-desc">Download the standard build. Don't overthink versions; use latest stable.</div><span class="resource-tag tag-free">Free</span></div>
+      <div class="resource"><div class="resource-type">Art Tool</div><div class="resource-name"><a href="https://www.aseprite.org" target="_blank" rel="noopener">Aseprite</a></div><div class="resource-desc">$20 on Steam or free if you compile from source. The industry standard for pixel art. Worth every cent.</div><span class="resource-tag tag-paid">$20</span></div>
+      <div class="resource"><div class="resource-type">SFX</div><div class="resource-name"><a href="https://www.bfxr.net" target="_blank" rel="noopener">BFXR / SFXR</a></div><div class="resource-desc">Browser-based retro sound effect generator. Perfect for early projects. Zero skill needed.</div><span class="resource-tag tag-free">Free</span></div>
+      <div class="resource"><div class="resource-type">Music (Beginner)</div><div class="resource-name"><a href="https://lmms.io" target="_blank" rel="noopener">LMMS</a></div><div class="resource-desc">Free DAW. Good enough for learning fundamentals before investing in anything else.</div><span class="resource-tag tag-free">Free</span></div>
+      <div class="resource"><div class="resource-type">Music (Later)</div><div class="resource-name"><a href="https://www.ableton.com/en/products/live-lite/" target="_blank" rel="noopener">Ableton Live Lite</a></div><div class="resource-desc">Often bundled free with hardware. If you want a real DAW path eventually, Ableton's the best-documented for beginners.</div><span class="resource-tag tag-free">Free w/ Hardware</span></div>
+      <div class="resource"><div class="resource-type">Version Control</div><div class="resource-name"><a href="https://github.com" target="_blank" rel="noopener">Git + GitHub</a></div><div class="resource-desc">Use it from day one. Godot projects are git-friendly. Back up every project.</div><span class="resource-tag tag-free">Free</span></div>
     </div>
 
     <div class="sub-section-title">The Right Mental Model</div>
     <div class="principle-block" style="border-color: var(--accent-gold)">
       <div class="principle-title">You Are Learning Five Crafts Simultaneously</div>
-      <div class="principle-body">Game design, programming, visual art, music, and project management are each independently 10,000-hour disciplines. You will be a beginner in all of them for years. The goal isn't mastery — it's <em>sufficient proficiency in each</em> to finish a small cohesive game. Your coding background gives you a massive head start in one of the five. Use that to finish things early while the other four catch up.</div>
+      <div class="principle-body">Game design, programming, visual art, music, and project management are each independently 10,000-hour disciplines. You will be a beginner in all of them for years. The goal isn't mastery &mdash; it's <em>sufficient proficiency in each</em> to finish a small cohesive game. Your coding background gives you a massive head start in one of the five. Use that to finish things early while the other four catch up.</div>
     </div>
     <div class="principle-block" style="border-color: var(--accent-teal)">
       <div class="principle-title">Breadth First, Depth Second</div>
-      <div class="principle-body">Before Year 1 is over, you should have finished at least 6–10 tiny complete games. Not prototypes with placeholders — finished games, however rough, with art and sound integrated. The workflow of shipping is the skill. You will learn more about game feel from shipping 10 ugly games than from reading 10 books about game design.</div>
+      <div class="principle-body">Before Year 1 is over, you should have finished at least 6&ndash;10 tiny complete games. Not prototypes with placeholders &mdash; finished games, however rough, with art and sound integrated. The workflow of shipping is the skill. You will learn more about game feel from shipping 10 ugly games than from reading 10 books about game design.</div>
     </div>
     <div class="principle-block" style="border-color: var(--accent-rose)">
       <div class="principle-title">Separate Practice from Production</div>
@@ -217,52 +479,54 @@
   <hr class="divider">
 
   <!-- TRACK 1 -->
-  <div class="section domain-design">
-    <div class="section-title">Track 1 — Game Design</div>
+  <div class="section domain-design" id="track-1">
+    <div class="section-title">Track 1 &mdash; Game Design</div>
     <div class="track-header">
-      <div class="track-icon">♟</div>
+      <div class="track-icon">&#9823;</div>
       <div><div class="track-sub">The Intellectual Core</div><h2>Game Design</h2></div>
     </div>
     <p style="font-size:12px; color:var(--text-dim); margin-bottom:24px; line-height:1.8;">Game design is not about rules and mechanics in isolation. It is the practice of engineering human experiences through systems. Most beginners skip the theory and wonder why their games feel empty.</p>
 
     <div class="phase phase-gold">
-      <div class="phase-header">
-        <div><div class="phase-num">PHASE 1.1</div><div class="phase-title">Theory Foundations</div><div class="phase-timeline">Months 1–3 · 1–2 hrs/week</div></div>
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">PHASE 1.1</div><div class="phase-title">Theory Foundations</div><div class="phase-timeline">Months 1&ndash;3 &middot; 1&ndash;2 hrs/week</div></div>
+        <div class="phase-toggle">&#9662;</div>
       </div>
       <div class="phase-body">
         <div class="phase-goal">Goal: Develop a vocabulary for talking about why games feel the way they feel. You should be able to analyze any game you play as a system.</div>
         <div class="resource-grid">
-          <div class="resource"><div class="resource-type">Book</div><div class="resource-name">A Theory of Fun — Raph Koster</div><div class="resource-desc">Read this first. Short (~250 pages, illustrated). Argues games are learning engines. Changes how you think about "fun" permanently.</div><span class="resource-tag tag-essential">Read First</span></div>
-          <div class="resource"><div class="resource-type">Book</div><div class="resource-name">The Art of Game Design — Jesse Schell</div><div class="resource-desc">600 pages structured as a "deck of lenses" — 100+ perspectives for analyzing and improving any game. Read a chapter, then apply the lenses to a game you're playing.</div><span class="resource-tag tag-paid">~$35</span></div>
-          <div class="resource"><div class="resource-type">Video Series</div><div class="resource-name">GDC Vault — Design Talks</div><div class="resource-desc">gdcvault.com — hundreds of free talks. Start with Jonathan Blow's "Designing to Reveal the Nature of the Universe" and Sid Meier's "A Theory of Fun".</div><span class="resource-tag tag-free">Free</span></div>
-          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name">GMTK (Game Maker's Toolkit)</div><div class="resource-desc">Mark Brown's analytical breakdowns are the single best applied design education on the internet. Watch 2–3 videos per week. Every video is a case study worth deconstructing.</div><span class="resource-tag tag-free">Free</span><span class="resource-tag tag-essential">Essential</span></div>
+          <div class="resource"><div class="resource-type">Book</div><div class="resource-name">A Theory of Fun &mdash; Raph Koster</div><div class="resource-desc">Read this first. Short (~250 pages, illustrated). Argues games are learning engines. Changes how you think about "fun" permanently.</div><span class="resource-tag tag-essential">Read First</span></div>
+          <div class="resource"><div class="resource-type">Book</div><div class="resource-name">The Art of Game Design &mdash; Jesse Schell</div><div class="resource-desc">600 pages structured as a "deck of lenses" &mdash; 100+ perspectives for analyzing and improving any game. Read a chapter, then apply the lenses to a game you're playing.</div><span class="resource-tag tag-paid">~$35</span></div>
+          <div class="resource"><div class="resource-type">Video Series</div><div class="resource-name"><a href="https://gdcvault.com" target="_blank" rel="noopener">GDC Vault &mdash; Design Talks</a></div><div class="resource-desc">Hundreds of free talks. Start with Jonathan Blow's "Designing to Reveal the Nature of the Universe" and Sid Meier's "A Theory of Fun."</div><span class="resource-tag tag-free">Free</span></div>
+          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name"><a href="https://www.youtube.com/@GMTK" target="_blank" rel="noopener">GMTK (Game Maker's Toolkit)</a></div><div class="resource-desc">Mark Brown's analytical breakdowns are the single best applied design education on the internet. Watch 2&ndash;3 videos per week. Every video is a case study worth deconstructing.</div><span class="resource-tag tag-free">Free</span><span class="resource-tag tag-essential">Essential</span></div>
         </div>
         <div class="exercises">
           <div class="exercises-label">Exercises</div>
-          <div class="exercise-item"><div class="exercise-num">01</div><div><div class="exercise-text">After every game you play, write a 200-word "design autopsy" — what is the core mechanic, what does it teach the player, what was the feedback loop, what did it do well/poorly.</div><div class="exercise-why">Builds the habit of analytical observation. Most devs play games passively. You need to play them as an engineer.</div></div></div>
-          <div class="exercise-item"><div class="exercise-num">02</div><div><div class="exercise-text">Pick a simple game (Chess, Tetris, Flappy Bird) and write a complete design document from scratch — as if you're designing it for the first time. Include core loop, player goals, feedback mechanisms, and win/lose conditions.</div></div></div>
+          <div class="exercise-item"><div class="exercise-num">01</div><div><div class="exercise-text">After every game you play, write a 200-word "design autopsy" &mdash; what is the core mechanic, what does it teach the player, what was the feedback loop, what did it do well/poorly.</div><div class="exercise-why">Builds the habit of analytical observation. Most devs play games passively. You need to play them as an engineer.</div></div></div>
+          <div class="exercise-item"><div class="exercise-num">02</div><div><div class="exercise-text">Pick a simple game (Chess, Tetris, Flappy Bird) and write a complete design document from scratch &mdash; as if you're designing it for the first time. Include core loop, player goals, feedback mechanisms, and win/lose conditions.</div></div></div>
           <div class="exercise-item"><div class="exercise-num">03</div><div><div class="exercise-text">Play and dissect 3 games in radically different genres: a puzzle game, a platformer, and a roguelike. For each, identify the core loop, the primary skill the player develops, and the moment-to-moment feedback.</div><div class="exercise-why">Cross-genre analysis prevents tunnel vision. Most devs only analyze the genre they want to make.</div></div></div>
         </div>
       </div>
     </div>
 
     <div class="phase phase-gold">
-      <div class="phase-header">
-        <div><div class="phase-num">PHASE 1.2</div><div class="phase-title">Applied Design — Rapid Ideation & GDDs</div><div class="phase-timeline">Months 3–8 · ongoing</div></div>
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">PHASE 1.2</div><div class="phase-title">Applied Design &mdash; Rapid Ideation & GDDs</div><div class="phase-timeline">Months 3&ndash;8 &middot; ongoing</div></div>
+        <div class="phase-toggle">&#9662;</div>
       </div>
       <div class="phase-body">
-        <div class="phase-goal">Goal: Build the habit of translating ideas into structured design documents. Design is a muscle — it requires regular output, not just consumption.</div>
+        <div class="phase-goal">Goal: Build the habit of translating ideas into structured design documents. Design is a muscle &mdash; it requires regular output, not just consumption.</div>
         <div class="principle-block" style="border-color: var(--accent-gold)">
           <div class="principle-title">The One-Page GDD Format</div>
-          <div class="principle-body">For every small game you make, write a one-page GDD first. Include: <strong>Core fantasy</strong> (what does the player feel?), <strong>Core loop</strong> (what do you do every 30 seconds?), <strong>Win/loss condition</strong>, <strong>Single distinguishing mechanic</strong>, <strong>Scope estimate</strong> — then cut it in half.</div>
+          <div class="principle-body">For every small game you make, write a one-page GDD first. Include: <strong>Core fantasy</strong> (what does the player feel?), <strong>Core loop</strong> (what do you do every 30 seconds?), <strong>Win/loss condition</strong>, <strong>Single distinguishing mechanic</strong>, <strong>Scope estimate</strong> &mdash; then cut it in half.</div>
         </div>
         <div class="resource-grid">
-          <div class="resource"><div class="resource-type">Community</div><div class="resource-name">Ludum Dare / GMTK Game Jam</div><div class="resource-desc">Participate in at least one jam every 3 months. The 48-hour constraint is the best design education available. You will make something bad and it will teach you more than months of theory.</div><span class="resource-tag tag-free">Free</span><span class="resource-tag tag-essential">Do This</span></div>
-          <div class="resource"><div class="resource-type">Book (Later)</div><div class="resource-name">Rules of Play — Salen & Zimmerman</div><div class="resource-desc">The academic deep-dive. Dense. Read after you've shipped 3–4 games and want rigorous vocabulary for systems design. Not for beginners.</div><span class="resource-tag tag-paid">~$50</span></div>
+          <div class="resource"><div class="resource-type">Community</div><div class="resource-name"><a href="https://ldjam.com" target="_blank" rel="noopener">Ludum Dare</a> / <a href="https://itch.io/jam/gmtk-jam-2024" target="_blank" rel="noopener">GMTK Game Jam</a></div><div class="resource-desc">Participate in at least one jam every 3 months. The 48-hour constraint is the best design education available. You will make something bad and it will teach you more than months of theory.</div><span class="resource-tag tag-free">Free</span><span class="resource-tag tag-essential">Do This</span></div>
+          <div class="resource"><div class="resource-type">Book (Later)</div><div class="resource-name">Rules of Play &mdash; Salen & Zimmerman</div><div class="resource-desc">The academic deep-dive. Dense. Read after you've shipped 3&ndash;4 games and want rigorous vocabulary for systems design. Not for beginners.</div><span class="resource-tag tag-paid">~$50</span></div>
         </div>
         <div class="exercises">
           <div class="exercises-label">Design Exercises (ongoing)</div>
-          <div class="exercise-item"><div class="exercise-num">01</div><div><div class="exercise-text">Weekly "mechanic journal" — once per week, describe one game mechanic you invented or noticed. How would you implement it? What player behavior does it incentivize?</div></div></div>
+          <div class="exercise-item"><div class="exercise-num">01</div><div><div class="exercise-text">Weekly "mechanic journal" &mdash; once per week, describe one game mechanic you invented or noticed. How would you implement it? What player behavior does it incentivize?</div></div></div>
           <div class="exercise-item"><div class="exercise-num">02</div><div><div class="exercise-text">Take any mechanic from a game you love and ask: "What if I inverted this?" Generate 5 variants of a single mechanic in 20 minutes. Don't filter. This is ideation practice.</div></div></div>
           <div class="exercise-item"><div class="exercise-num">03</div><div><div class="exercise-text">Design a game with a single constraint: fully playable in under 3 minutes, no tutorial, immediately intuitive to a first-time player. Write the GDD and implement it in Godot. Playtest with one real person.</div><div class="exercise-why">Forces you to communicate mechanics through level design and visual language rather than text.</div></div></div>
         </div>
@@ -270,15 +534,16 @@
     </div>
 
     <div class="phase phase-gold">
-      <div class="phase-header">
-        <div><div class="phase-num">PHASE 1.3</div><div class="phase-title">Intermediate Design — Systems & Level Design</div><div class="phase-timeline">Year 2</div></div>
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">PHASE 1.3</div><div class="phase-title">Intermediate Design &mdash; Systems & Level Design</div><div class="phase-timeline">Year 2</div></div>
+        <div class="phase-toggle">&#9662;</div>
       </div>
       <div class="phase-body">
         <div class="phase-goal">Goal: Move from designing individual mechanics to designing interconnected systems. Learn level design as communication.</div>
         <div class="resource-grid">
-          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name">Snoman Gaming</div><div class="resource-desc">Detailed level design analysis — Mario, Hollow Knight, Celeste. The best practical level design education on YouTube. Study how those games teach through environment.</div><span class="resource-tag tag-free">Free</span></div>
-          <div class="resource"><div class="resource-type">Book</div><div class="resource-name">Level Up! — Scott Rogers</div><div class="resource-desc">Practical, industry-focused level design guide. Better for 2D games than most. Read after you've made 5+ projects.</div><span class="resource-tag tag-paid">~$40</span></div>
-          <div class="resource"><div class="resource-type">Exercise</div><div class="resource-name">10-Level Design Challenge</div><div class="resource-desc">Design 10 single-screen platformer levels where each level teaches exactly one new skill through environment — no text. This is the canonical level design exercise.</div><span class="resource-tag tag-free">Exercise</span></div>
+          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name"><a href="https://www.youtube.com/@SnomanGaming" target="_blank" rel="noopener">Snoman Gaming</a></div><div class="resource-desc">Detailed level design analysis &mdash; Mario, Hollow Knight, Celeste. The best practical level design education on YouTube. Study how those games teach through environment.</div><span class="resource-tag tag-free">Free</span></div>
+          <div class="resource"><div class="resource-type">Book</div><div class="resource-name">Level Up! &mdash; Scott Rogers</div><div class="resource-desc">Practical, industry-focused level design guide. Better for 2D games than most. Read after you've made 5+ projects.</div><span class="resource-tag tag-paid">~$40</span></div>
+          <div class="resource"><div class="resource-type">Exercise</div><div class="resource-name">10-Level Design Challenge</div><div class="resource-desc">Design 10 single-screen platformer levels where each level teaches exactly one new skill through environment &mdash; no text. This is the canonical level design exercise.</div><span class="resource-tag tag-free">Exercise</span></div>
         </div>
       </div>
     </div>
@@ -287,32 +552,33 @@
   <hr class="divider">
 
   <!-- TRACK 2 -->
-  <div class="section domain-godot">
-    <div class="section-title">Track 2 — Engine</div>
+  <div class="section domain-godot" id="track-2">
+    <div class="section-title">Track 2 &mdash; Engine</div>
     <div class="track-header">
-      <div class="track-icon">◈</div>
+      <div class="track-icon">&#9672;</div>
       <div><div class="track-sub">Your Fastest Ramp</div><h2>Godot 4</h2></div>
     </div>
-    <p style="font-size:12px; color:var(--text-dim); margin-bottom:24px; line-height:1.8;">Given your coding background, Godot will be your most natural track. GDScript is Python-flavored and beginner-friendly, but Godot's node/scene model is conceptually distinct from OOP class hierarchies — that mental shift is the real learning curve, not the language.</p>
+    <p style="font-size:12px; color:var(--text-dim); margin-bottom:24px; line-height:1.8;">Given your coding background, Godot will be your most natural track. GDScript is Python-flavored and beginner-friendly, but Godot's node/scene model is conceptually distinct from OOP class hierarchies &mdash; that mental shift is the real learning curve, not the language.</p>
 
     <div class="phase phase-teal">
-      <div class="phase-header">
-        <div><div class="phase-num">PHASE 2.1</div><div class="phase-title">Engine Fundamentals</div><div class="phase-timeline">Month 1 · 2–3 hrs/session, 3x per week</div></div>
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">PHASE 2.1</div><div class="phase-title">Engine Fundamentals</div><div class="phase-timeline">Month 1 &middot; 2&ndash;3 hrs/session, 3x per week</div></div>
+        <div class="phase-toggle">&#9662;</div>
       </div>
       <div class="phase-body">
-        <div class="phase-goal">Goal: Understand Godot's core mental model — nodes, scenes, signals, and the scene tree. Be able to build any 2D game prototype within a few hours.</div>
+        <div class="phase-goal">Goal: Understand Godot's core mental model &mdash; nodes, scenes, signals, and the scene tree. Be able to build any 2D game prototype within a few hours.</div>
         <div class="resource-grid">
-          <div class="resource"><div class="resource-type">YouTube Course</div><div class="resource-name">GDQuest — Godot 4 Beginner Series</div><div class="resource-desc">The single best structured intro to Godot 4. GDQuest is made by professional devs and the pedagogical quality is excellent. Do every exercise in the series, don't just watch.</div><span class="resource-tag tag-free">Free</span><span class="resource-tag tag-essential">Start Here</span></div>
-          <div class="resource"><div class="resource-type">Official Docs</div><div class="resource-name">Godot 4 Documentation</div><div class="resource-desc">docs.godotengine.org — treat this as your bible, not a last resort. The Getting Started section and GDScript reference should be read front to back once.</div><span class="resource-tag tag-free">Free</span></div>
-          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name">HeartBeast — Action RPG in Godot</div><div class="resource-desc">Covers tilemaps, state machines, enemy AI, and inventory. One of the best long-form project-based tutorials available.</div><span class="resource-tag tag-free">Free</span></div>
-          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name">Brackeys — Godot Series</div><div class="resource-desc">Brackeys returned from retirement to cover Godot. Very approachable. Good for filling in gaps after GDQuest's main series.</div><span class="resource-tag tag-free">Free</span></div>
+          <div class="resource"><div class="resource-type">YouTube Course</div><div class="resource-name"><a href="https://www.youtube.com/@GDQuest" target="_blank" rel="noopener">GDQuest &mdash; Godot 4 Beginner Series</a></div><div class="resource-desc">The single best structured intro to Godot 4. GDQuest is made by professional devs and the pedagogical quality is excellent. Do every exercise in the series, don't just watch.</div><span class="resource-tag tag-free">Free</span><span class="resource-tag tag-essential">Start Here</span></div>
+          <div class="resource"><div class="resource-type">Official Docs</div><div class="resource-name"><a href="https://docs.godotengine.org" target="_blank" rel="noopener">Godot 4 Documentation</a></div><div class="resource-desc">Treat this as your bible, not a last resort. The Getting Started section and GDScript reference should be read front to back once.</div><span class="resource-tag tag-free">Free</span></div>
+          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name"><a href="https://www.youtube.com/@uaborea" target="_blank" rel="noopener">HeartBeast &mdash; Action RPG in Godot</a></div><div class="resource-desc">Covers tilemaps, state machines, enemy AI, and inventory. One of the best long-form project-based tutorials available.</div><span class="resource-tag tag-free">Free</span></div>
+          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name"><a href="https://www.youtube.com/@Brackeys" target="_blank" rel="noopener">Brackeys &mdash; Godot Series</a></div><div class="resource-desc">Brackeys returned from retirement to cover Godot. Very approachable. Good for filling in gaps after GDQuest's main series.</div><span class="resource-tag tag-free">Free</span></div>
         </div>
         <div class="sub-section-title">Core Concepts to Master (in order)</div>
         <ul class="plain-list">
-          <li><strong>Nodes & Scenes:</strong> Godot's compositional model. A scene is a reusable tree of nodes. Don't try to map it to OOP — learn it on its own terms.</li>
+          <li><strong>Nodes & Scenes:</strong> Godot's compositional model. A scene is a reusable tree of nodes. Don't try to map it to OOP &mdash; learn it on its own terms.</li>
           <li><strong>Signals:</strong> Godot's event system. Critical for decoupled architecture. Signals replace most cases where you'd use direct method calls between nodes.</li>
           <li><strong>GDScript:</strong> Start dynamically typed, add type hints after month 2. Static typing catches bugs earlier and documents intent.</li>
-          <li><strong>Physics bodies:</strong> CharacterBody2D, RigidBody2D, StaticBody2D — understand when to use each. Misusing these is the most common beginner architecture mistake.</li>
+          <li><strong>Physics bodies:</strong> CharacterBody2D, RigidBody2D, StaticBody2D &mdash; understand when to use each. Misusing these is the most common beginner architecture mistake.</li>
           <li><strong>AnimationTree:</strong> Use AnimationPlayer for simple animations, AnimationTree with state machines for characters with multiple states.</li>
           <li><strong>Autoloads (Singletons):</strong> For game state, audio manager, save/load. Prevents the "how do I share data between scenes" confusion.</li>
           <li><strong>Resource system:</strong> Custom Resources are a powerful, underused pattern for data-driven design (items, stats, dialogue). Learn them by month 3.</li>
@@ -320,50 +586,52 @@
         <div class="exercises">
           <div class="exercises-label">Exercises</div>
           <div class="exercise-item"><div class="exercise-num">01</div><div><div class="exercise-text">Clone Pong from scratch without tutorials in a single afternoon. This is your baseline test. If you struggle significantly, the GDQuest fundamentals series is mandatory first.</div></div></div>
-          <div class="exercise-item"><div class="exercise-num">02</div><div><div class="exercise-text">Build a CharacterBody2D controller with: 8-directional movement, animation state machine (idle/walk), a "pickup" mechanic using Area2D and signals, and a simple HUD that updates on pickup. No art assets — use Godot primitives. Focus on architecture.</div><div class="exercise-why">This covers ~70% of what most 2D games need at a fundamental level.</div></div></div>
-          <div class="exercise-item"><div class="exercise-num">03</div><div><div class="exercise-text">Implement a basic save/load system using an Autoload. Save the player's position, a score, and one boolean flag to a JSON file. Load it on game start. Most tutorials skip this — don't.</div></div></div>
+          <div class="exercise-item"><div class="exercise-num">02</div><div><div class="exercise-text">Build a CharacterBody2D controller with: 8-directional movement, animation state machine (idle/walk), a "pickup" mechanic using Area2D and signals, and a simple HUD that updates on pickup. No art assets &mdash; use Godot primitives. Focus on architecture.</div><div class="exercise-why">This covers ~70% of what most 2D games need at a fundamental level.</div></div></div>
+          <div class="exercise-item"><div class="exercise-num">03</div><div><div class="exercise-text">Implement a basic save/load system using an Autoload. Save the player's position, a score, and one boolean flag to a JSON file. Load it on game start. Most tutorials skip this &mdash; don't.</div></div></div>
         </div>
       </div>
     </div>
 
     <div class="phase phase-teal">
-      <div class="phase-header">
-        <div><div class="phase-num">PHASE 2.2</div><div class="phase-title">Intermediate Systems & Game Feel</div><div class="phase-timeline">Months 2–6</div></div>
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">PHASE 2.2</div><div class="phase-title">Intermediate Systems & Game Feel</div><div class="phase-timeline">Months 2&ndash;6</div></div>
+        <div class="phase-toggle">&#9662;</div>
       </div>
       <div class="phase-body">
-        <div class="phase-goal">Goal: Learn the systems that distinguish polished games from prototypes — game feel, state machines, enemy AI, procedural generation basics, and audio integration.</div>
+        <div class="phase-goal">Goal: Learn the systems that distinguish polished games from prototypes &mdash; game feel, state machines, enemy AI, procedural generation basics, and audio integration.</div>
         <div class="resource-grid">
-          <div class="resource"><div class="resource-type">Book</div><div class="resource-name">Game Feel — Steve Swink</div><div class="resource-desc">The canonical reference for what makes controls feel satisfying. Covers squash/stretch, screen shake, coyote time, input buffering. Apply every concept in Godot immediately after reading.</div><span class="resource-tag tag-paid">~$30</span></div>
-          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name">Bitlytic — State Machines in Godot</div><div class="resource-desc">Deep-dive on implementing finite state machines in Godot 4 for both player controllers and enemy AI. The correct way to architect behavior.</div><span class="resource-tag tag-free">Free</span></div>
-          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name">Acerola — Shader Tutorials</div><div class="resource-desc">Godot shader language tutorials. Start shaders around month 4. Even simple shaders (outline, pixel dissolve, water ripple) massively elevate visual quality.</div><span class="resource-tag tag-free">Free</span></div>
+          <div class="resource"><div class="resource-type">Book</div><div class="resource-name">Game Feel &mdash; Steve Swink</div><div class="resource-desc">The canonical reference for what makes controls feel satisfying. Covers squash/stretch, screen shake, coyote time, input buffering. Apply every concept in Godot immediately after reading.</div><span class="resource-tag tag-paid">~$30</span></div>
+          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name"><a href="https://www.youtube.com/@Bitlytic" target="_blank" rel="noopener">Bitlytic &mdash; State Machines in Godot</a></div><div class="resource-desc">Deep-dive on implementing finite state machines in Godot 4 for both player controllers and enemy AI. The correct way to architect behavior.</div><span class="resource-tag tag-free">Free</span></div>
+          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name"><a href="https://www.youtube.com/@Acerola_t" target="_blank" rel="noopener">Acerola &mdash; Shader Tutorials</a></div><div class="resource-desc">Godot shader language tutorials. Start shaders around month 4. Even simple shaders (outline, pixel dissolve, water ripple) massively elevate visual quality.</div><span class="resource-tag tag-free">Free</span></div>
         </div>
         <div class="sub-section-title">Critical Game Feel Techniques</div>
         <ul class="plain-list">
-          <li><strong>Coyote time:</strong> Allow jumping ~0.1–0.15s after walking off an edge. Every platformer needs this.</li>
+          <li><strong>Coyote time:</strong> Allow jumping ~0.1&ndash;0.15s after walking off an edge. Every platformer needs this.</li>
           <li><strong>Input buffering:</strong> Queue a jump input up to 0.1s before landing. Removes the feel of "missed inputs."</li>
           <li><strong>Screen shake:</strong> Implement using Camera2D offset randomization, NOT viewport transforms.</li>
-          <li><strong>Hitstop / Freeze frames:</strong> Pause physics for 3–8 frames on impact via Engine.time_scale. Dramatically increases the weight of hits.</li>
-          <li><strong>Juice hierarchy:</strong> Particles → sound → screen shake → hitstop. Add in this order. Each layer should feel complete before the next.</li>
+          <li><strong>Hitstop / Freeze frames:</strong> Pause physics for 3&ndash;8 frames on impact via Engine.time_scale. Dramatically increases the weight of hits.</li>
+          <li><strong>Juice hierarchy:</strong> Particles &rarr; sound &rarr; screen shake &rarr; hitstop. Add in this order. Each layer should feel complete before the next.</li>
           <li><strong>Tweens:</strong> Godot 4's Tween API is excellent. Use it for UI animations, camera zoom, score popups. Avoid physics-based animation for UI.</li>
         </ul>
         <div class="exercises">
           <div class="exercises-label">Exercises</div>
-          <div class="exercise-item"><div class="exercise-num">01</div><div><div class="exercise-text">"Juice It or Lose It" — take a completely unjuiced prototype and add: screen shake on impact, particle burst on pickup, sound effects, animated score popup, death animation. Compare before/after. The most important single exercise for understanding game feel.</div></div></div>
+          <div class="exercise-item"><div class="exercise-num">01</div><div><div class="exercise-text">"Juice It or Lose It" &mdash; take a completely unjuiced prototype and add: screen shake on impact, particle burst on pickup, sound effects, animated score popup, death animation. Compare before/after. The most important single exercise for understanding game feel.</div></div></div>
           <div class="exercise-item"><div class="exercise-num">02</div><div><div class="exercise-text">Implement an enemy with a 3-state FSM: Patrol (walks back and forth), Chase (moves toward player when in range), Attack (animation + damage). Use an Autoload signal bus for damage events rather than direct node references.</div></div></div>
-          <div class="exercise-item"><div class="exercise-num">03</div><div><div class="exercise-text">Build a simple dungeon generator using Binary Space Partitioning. Render it using a TileMap. No gameplay needed — just the generation. Learn to think procedurally.</div></div></div>
+          <div class="exercise-item"><div class="exercise-num">03</div><div><div class="exercise-text">Build a simple dungeon generator using Binary Space Partitioning. Render it using a TileMap. No gameplay needed &mdash; just the generation. Learn to think procedurally.</div></div></div>
         </div>
       </div>
     </div>
 
     <div class="phase phase-teal">
-      <div class="phase-header">
-        <div><div class="phase-num">PHASE 2.3</div><div class="phase-title">Advanced — Architecture, Shaders, Exporting</div><div class="phase-timeline">Year 2</div></div>
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">PHASE 2.3</div><div class="phase-title">Advanced &mdash; Architecture, Shaders, Exporting</div><div class="phase-timeline">Year 2</div></div>
+        <div class="phase-toggle">&#9662;</div>
       </div>
       <div class="phase-body">
         <div class="phase-goal">Goal: Learn the patterns that make larger games maintainable. Understand enough shader programming to implement a distinctive visual style.</div>
         <div class="resource-grid">
-          <div class="resource"><div class="resource-type">Resource</div><div class="resource-name">The Book of Shaders</div><div class="resource-desc">thebookofshaders.com — free, interactive. Learn GLSL fundamentals. Godot's shader language is close enough that this directly applies. Do chapters 1–10 minimum.</div><span class="resource-tag tag-free">Free</span></div>
-          <div class="resource"><div class="resource-type">Export</div><div class="resource-name">Godot Web Export</div><div class="resource-desc">Godot exports to HTML5/WebAssembly natively. Web builds run directly in browser on itch.io, massively increasing your playership. Configure SharedArrayBuffer headers correctly — required for Godot 4.</div><span class="resource-tag tag-free">Free</span></div>
+          <div class="resource"><div class="resource-type">Resource</div><div class="resource-name"><a href="https://thebookofshaders.com" target="_blank" rel="noopener">The Book of Shaders</a></div><div class="resource-desc">Free, interactive. Learn GLSL fundamentals. Godot's shader language is close enough that this directly applies. Do chapters 1&ndash;10 minimum.</div><span class="resource-tag tag-free">Free</span></div>
+          <div class="resource"><div class="resource-type">Export</div><div class="resource-name"><a href="https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_web.html" target="_blank" rel="noopener">Godot Web Export</a></div><div class="resource-desc">Godot exports to HTML5/WebAssembly natively. Web builds run directly in browser on itch.io, massively increasing your playership. Configure SharedArrayBuffer headers correctly &mdash; required for Godot 4.</div><span class="resource-tag tag-free">Free</span></div>
         </div>
       </div>
     </div>
@@ -372,33 +640,34 @@
   <hr class="divider">
 
   <!-- TRACK 3 -->
-  <div class="section domain-art">
-    <div class="section-title">Track 3 — Visual Art</div>
+  <div class="section domain-art" id="track-3">
+    <div class="section-title">Track 3 &mdash; Visual Art</div>
     <div class="track-header">
-      <div class="track-icon">▣</div>
+      <div class="track-icon">&#9635;</div>
       <div><div class="track-sub">The Slow Track</div><h2>Pixel Art</h2></div>
     </div>
     <div class="callout">
-      <div class="callout-icon">◎</div>
-      <div class="callout-body"><strong>Why pixel art first?</strong> Pixel art is the most forgiving art form for beginners — constraints (small canvas, limited palette) eliminate a huge space of possible mistakes. It rewards deliberate decision-making over fluid technique, maps perfectly to screen pixels, and produces a recognizable aesthetic that works well at indie scale. Do not attempt "full resolution" digital art until you have 6–12 months of pixel art practice.</div>
+      <div class="callout-icon">&#9678;</div>
+      <div class="callout-body"><strong>Why pixel art first?</strong> Pixel art is the most forgiving art form for beginners &mdash; constraints (small canvas, limited palette) eliminate a huge space of possible mistakes. It rewards deliberate decision-making over fluid technique, maps perfectly to screen pixels, and produces a recognizable aesthetic that works well at indie scale. Do not attempt "full resolution" digital art until you have 6&ndash;12 months of pixel art practice.</div>
     </div>
 
     <div class="phase phase-rose">
-      <div class="phase-header">
-        <div><div class="phase-num">PHASE 3.1</div><div class="phase-title">Pixel Art Fundamentals</div><div class="phase-timeline">Months 1–4 · 30–45 min daily</div></div>
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">PHASE 3.1</div><div class="phase-title">Pixel Art Fundamentals</div><div class="phase-timeline">Months 1&ndash;4 &middot; 30&ndash;45 min daily</div></div>
+        <div class="phase-toggle">&#9662;</div>
       </div>
       <div class="phase-body">
         <div class="phase-goal">Goal: Understand how pixel art communicates form through constraint. Be able to make clean sprites at 16x16 and 32x32 that read clearly at game resolution.</div>
         <div class="warn"><strong>The consistency trap:</strong> Don't switch pixel scales, palettes, or tools constantly. Pick a canvas size (16x16 to start), pick one palette from Lospec, and stick to both for at least 4 weeks. Constraint reveals skill gaps faster than variety.</div>
         <div class="resource-grid">
-          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name">Brandon James Greer (BJG)</div><div class="resource-desc">The best pixel art educator on YouTube. Systematic, clear, pedagogically rigorous. Start with his "Complete Beginner's Guide" playlist and do every exercise.</div><span class="resource-tag tag-free">Free</span><span class="resource-tag tag-essential">Start Here</span></div>
-          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name">AdamCYounis</div><div class="resource-desc">Excellent practical tutorials, especially on animation principles, tile art, and color theory for pixel art specifically. Watch alongside BJG.</div><span class="resource-tag tag-free">Free</span></div>
-          <div class="resource"><div class="resource-type">Tool</div><div class="resource-name">Lospec Palette List</div><div class="resource-desc">lospec.com/palette-list — start with DB32 (DawnBringer32, 32 colors) or PICO-8 (16 colors). Never mix palettes. Palette discipline separates coherent art from muddy art.</div><span class="resource-tag tag-free">Free</span><span class="resource-tag tag-essential">Essential</span></div>
-          <div class="resource"><div class="resource-type">Book</div><div class="resource-name">Pixel Logic — Michael Azzi</div><div class="resource-desc">pixellogicbook.com — the single best paid resource for intermediate pixel art. Covers form, light, color, and advanced techniques. Read after 2–3 months of practice.</div><span class="resource-tag tag-paid">~$15 PDF</span></div>
+          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name"><a href="https://www.youtube.com/@BJGpixel" target="_blank" rel="noopener">Brandon James Greer (BJG)</a></div><div class="resource-desc">The best pixel art educator on YouTube. Systematic, clear, pedagogically rigorous. Start with his "Complete Beginner's Guide" playlist and do every exercise.</div><span class="resource-tag tag-free">Free</span><span class="resource-tag tag-essential">Start Here</span></div>
+          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name"><a href="https://www.youtube.com/@AdamCYounis" target="_blank" rel="noopener">AdamCYounis</a></div><div class="resource-desc">Excellent practical tutorials, especially on animation principles, tile art, and color theory for pixel art specifically. Watch alongside BJG.</div><span class="resource-tag tag-free">Free</span></div>
+          <div class="resource"><div class="resource-type">Tool</div><div class="resource-name"><a href="https://lospec.com/palette-list" target="_blank" rel="noopener">Lospec Palette List</a></div><div class="resource-desc">Start with DB32 (DawnBringer32, 32 colors) or PICO-8 (16 colors). Never mix palettes. Palette discipline separates coherent art from muddy art.</div><span class="resource-tag tag-free">Free</span><span class="resource-tag tag-essential">Essential</span></div>
+          <div class="resource"><div class="resource-type">Book</div><div class="resource-name"><a href="https://pixellogicbook.com" target="_blank" rel="noopener">Pixel Logic &mdash; Michael Azzi</a></div><div class="resource-desc">The single best paid resource for intermediate pixel art. Covers form, light, color, and advanced techniques. Read after 2&ndash;3 months of practice.</div><span class="resource-tag tag-paid">~$15 PDF</span></div>
         </div>
         <div class="sub-section-title">Core Techniques (in order)</div>
         <ul class="plain-list">
-          <li><strong>Manual anti-aliasing:</strong> Adding intermediate pixels at edges to smooth jagged lines. Critical from the start — "jaggies" are the telltale sign of novice pixel art.</li>
+          <li><strong>Manual anti-aliasing:</strong> Adding intermediate pixels at edges to smooth jagged lines. Critical from the start &mdash; "jaggies" are the telltale sign of novice pixel art.</li>
           <li><strong>Color ramp construction:</strong> Each base color needs light, mid, dark, and shadow variants. Learn to derive these using hue-shifting (not just value changes).</li>
           <li><strong>Dithering:</strong> Alternating pixels to simulate intermediate colors. Learn checkerboard dithering first.</li>
           <li><strong>Readability first:</strong> At 16x16, every pixel must serve the silhouette. Can you identify what the sprite is from its silhouette alone? If not, the design has failed regardless of detail quality.</li>
@@ -406,43 +675,45 @@
         </ul>
         <div class="exercises">
           <div class="exercises-label">Daily Practice Structure</div>
-          <div class="exercise-item"><div class="exercise-num">Wk 1–2</div><div><div class="exercise-text">Draw basic objects at 16x16 — a rock, a tree, a chest, a sword, a potion. Focus only on silhouette and whether the object is recognizable. Use only 3 colors per object to start.</div></div></div>
-          <div class="exercise-item"><div class="exercise-num">Wk 3–4</div><div><div class="exercise-text">Redo the same objects with proper color ramps (at least 4 values per color). Apply directional lighting from the top-left. Learn to communicate form through value, not outline.</div></div></div>
+          <div class="exercise-item"><div class="exercise-num">Wk 1&ndash;2</div><div><div class="exercise-text">Draw basic objects at 16x16 &mdash; a rock, a tree, a chest, a sword, a potion. Focus only on silhouette and whether the object is recognizable. Use only 3 colors per object to start.</div></div></div>
+          <div class="exercise-item"><div class="exercise-num">Wk 3&ndash;4</div><div><div class="exercise-text">Redo the same objects with proper color ramps (at least 4 values per color). Apply directional lighting from the top-left. Learn to communicate form through value, not outline.</div></div></div>
           <div class="exercise-item"><div class="exercise-num">Mo 2</div><div><div class="exercise-text">Draw a simple humanoid character at 16x16 and 32x32. Focus on recognizable proportions. Then upgrade to 4 directions (N/S/E/W). Canonical exercise in character art.</div></div></div>
-          <div class="exercise-item"><div class="exercise-num">Mo 2–3</div><div><div class="exercise-text">Create a 4-tile ground tileset (grass, dirt, stone, water) that tiles seamlessly. This is hard and will take multiple iterations — that's intentional.</div></div></div>
-          <div class="exercise-item"><div class="exercise-num">Mo 3–4</div><div><div class="exercise-text">"Sprite study" — recreate a pixel sprite from a game you admire, pixel by pixel. Do 5 of these. You will discover techniques you didn't know existed by reverse-engineering professional work.</div></div></div>
+          <div class="exercise-item"><div class="exercise-num">Mo 2&ndash;3</div><div><div class="exercise-text">Create a 4-tile ground tileset (grass, dirt, stone, water) that tiles seamlessly. This is hard and will take multiple iterations &mdash; that's intentional.</div></div></div>
+          <div class="exercise-item"><div class="exercise-num">Mo 3&ndash;4</div><div><div class="exercise-text">"Sprite study" &mdash; recreate a pixel sprite from a game you admire, pixel by pixel. Do 5 of these. You will discover techniques you didn't know existed by reverse-engineering professional work.</div></div></div>
         </div>
       </div>
     </div>
 
     <div class="phase phase-rose">
-      <div class="phase-header">
-        <div><div class="phase-num">PHASE 3.2</div><div class="phase-title">Animation Fundamentals</div><div class="phase-timeline">Months 3–6</div></div>
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">PHASE 3.2</div><div class="phase-title">Animation Fundamentals</div><div class="phase-timeline">Months 3&ndash;6</div></div>
+        <div class="phase-toggle">&#9662;</div>
       </div>
       <div class="phase-body">
         <div class="phase-goal">Goal: Understand the 12 principles of animation as applied to pixel art. Produce a convincing walk cycle, idle, and attack animation.</div>
         <div class="resource-grid">
-          <div class="resource"><div class="resource-type">Book</div><div class="resource-name">The Animator's Survival Kit — Richard Williams</div><div class="resource-desc">The definitive animation fundamentals book. Study: walk cycles, squash & stretch, anticipation, and timing. These directly translate to pixel animation.</div><span class="resource-tag tag-paid">~$40</span><span class="resource-tag tag-essential">Essential Long-Term</span></div>
-          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name">Mort (pixel art animation)</div><div class="resource-desc">Excellent pixel art animation tutorials for RPG/platformer sprites. Covers walk cycles, attack effects, and how to fake complex movement with few frames.</div><span class="resource-tag tag-free">Free</span></div>
+          <div class="resource"><div class="resource-type">Book</div><div class="resource-name">The Animator's Survival Kit &mdash; Richard Williams</div><div class="resource-desc">The definitive animation fundamentals book. Study: walk cycles, squash & stretch, anticipation, and timing. These directly translate to pixel animation.</div><span class="resource-tag tag-paid">~$40</span><span class="resource-tag tag-essential">Essential Long-Term</span></div>
+          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name"><a href="https://www.youtube.com/@MortMort" target="_blank" rel="noopener">Mort (pixel art animation)</a></div><div class="resource-desc">Excellent pixel art animation tutorials for RPG/platformer sprites. Covers walk cycles, attack effects, and how to fake complex movement with few frames.</div><span class="resource-tag tag-free">Free</span></div>
         </div>
         <div class="exercises">
           <div class="exercises-label">Animation Exercises (in order)</div>
-          <div class="exercise-item"><div class="exercise-num">01</div><div><div class="exercise-text">Bouncing ball — 8 frames, squash on landing. Forces you to think about weight, timing, and squash/stretch. Don't skip this because it's "too basic."</div></div></div>
-          <div class="exercise-item"><div class="exercise-num">02</div><div><div class="exercise-text">4-frame idle animation — subtle breathing, weight shifting. More frames is not better. 4 frames, well-timed, beats 12 poorly-timed frames.</div></div></div>
-          <div class="exercise-item"><div class="exercise-num">03</div><div><div class="exercise-text">8-frame walk cycle. Use reference (reference.pictures or animate yourself in a mirror). This is the hardest canonical beginner animation. Ship the imperfect version and come back to it later.</div></div></div>
-          <div class="exercise-item"><div class="exercise-num">04</div><div><div class="exercise-text">Attack animation — 3–5 frames. Focus on anticipation (windup), action (fast), and follow-through (slow return). Apply hitstop when integrating in Godot.</div></div></div>
+          <div class="exercise-item"><div class="exercise-num">01</div><div><div class="exercise-text">Bouncing ball &mdash; 8 frames, squash on landing. Forces you to think about weight, timing, and squash/stretch. Don't skip this because it's "too basic."</div></div></div>
+          <div class="exercise-item"><div class="exercise-num">02</div><div><div class="exercise-text">4-frame idle animation &mdash; subtle breathing, weight shifting. More frames is not better. 4 frames, well-timed, beats 12 poorly-timed frames.</div></div></div>
+          <div class="exercise-item"><div class="exercise-num">03</div><div><div class="exercise-text">8-frame walk cycle. Use reference (<a href="https://reference.pictures" target="_blank" rel="noopener">reference.pictures</a> or animate yourself in a mirror). This is the hardest canonical beginner animation. Ship the imperfect version and come back to it later.</div></div></div>
+          <div class="exercise-item"><div class="exercise-num">04</div><div><div class="exercise-text">Attack animation &mdash; 3&ndash;5 frames. Focus on anticipation (windup), action (fast), and follow-through (slow return). Apply hitstop when integrating in Godot.</div></div></div>
         </div>
       </div>
     </div>
 
     <div class="phase phase-rose">
-      <div class="phase-header">
-        <div><div class="phase-num">PHASE 3.3</div><div class="phase-title">Environment & UI Art</div><div class="phase-timeline">Months 6–12</div></div>
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">PHASE 3.3</div><div class="phase-title">Environment & UI Art</div><div class="phase-timeline">Months 6&ndash;12</div></div>
+        <div class="phase-toggle">&#9662;</div>
       </div>
       <div class="phase-body">
         <div class="phase-goal">Goal: Move beyond character sprites. Learn background composition, parallax layers, and game UI design.</div>
         <div class="resource-grid">
-          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name">Saultoons</div><div class="resource-desc">Excellent tutorials on pixel art environments, backgrounds, and game scene composition. Focuses heavily on readability and visual hierarchy.</div><span class="resource-tag tag-free">Free</span></div>
+          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name"><a href="https://www.youtube.com/@Saultoons" target="_blank" rel="noopener">Saultoons</a></div><div class="resource-desc">Excellent tutorials on pixel art environments, backgrounds, and game scene composition. Focuses heavily on readability and visual hierarchy.</div><span class="resource-tag tag-free">Free</span></div>
           <div class="resource"><div class="resource-type">Exercise</div><div class="resource-name">3-Layer Parallax Scene</div><div class="resource-desc">Create a scrolling background with 3 layers: far bg (slow), mid bg (medium), foreground (fast). Implement it in Godot with ParallaxBackground. Standard approach for 2D environments.</div><span class="resource-tag tag-free">Exercise</span></div>
         </div>
       </div>
@@ -452,82 +723,85 @@
   <hr class="divider">
 
   <!-- TRACK 4 -->
-  <div class="section domain-music">
-    <div class="section-title">Track 4 — Audio</div>
+  <div class="section domain-music" id="track-4">
+    <div class="section-title">Track 4 &mdash; Audio</div>
     <div class="track-header">
-      <div class="track-icon">♪</div>
+      <div class="track-icon">&#9834;</div>
       <div><div class="track-sub">The Most Underrated Track</div><h2>Music & Sound Design</h2></div>
     </div>
     <div class="callout">
-      <div class="callout-icon">◉</div>
+      <div class="callout-icon">&#9673;</div>
       <div class="callout-body"><strong>The most neglected skill in solo game dev.</strong> Studies show audio contributes as much as visuals to player immersion. Most solo devs either use free asset packs or compose two tracks and call it done. This track starts with sound effects (immediate wins) before music (slow accumulation), and teaches music theory before tool proficiency.</div>
     </div>
 
     <div class="phase phase-purple">
-      <div class="phase-header">
-        <div><div class="phase-num">PHASE 4.1</div><div class="phase-title">Sound Effects First</div><div class="phase-timeline">Month 1 — immediate start</div></div>
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">PHASE 4.1</div><div class="phase-title">Sound Effects First</div><div class="phase-timeline">Month 1 &mdash; immediate start</div></div>
+        <div class="phase-toggle">&#9662;</div>
       </div>
       <div class="phase-body">
         <div class="phase-goal">Goal: Have functional sound effects in every game from day one. Use procedural tools to produce acceptable SFX immediately without skill.</div>
         <div class="resource-grid">
-          <div class="resource"><div class="resource-type">Tool</div><div class="resource-name">BFXR (bfxr.net)</div><div class="resource-desc">Browser-based retro SFX generator. Random-generates starting points you can mutate. Produces jump, coin, explosion, laser, powerup sounds in seconds. Use for every project year 1.</div><span class="resource-tag tag-free">Free</span><span class="resource-tag tag-essential">Start Here</span></div>
-          <div class="resource"><div class="resource-type">Tool</div><div class="resource-name">Chiptone (sfbgames.itch.io)</div><div class="resource-desc">More control than BFXR. Good for when you need a specific sound and BFXR's randomization isn't cutting it. Learn to understand the synthesis parameters.</div><span class="resource-tag tag-free">Free</span></div>
-          <div class="resource"><div class="resource-type">Tool</div><div class="resource-name">Audacity</div><div class="resource-desc">Free audio editing. Use for: trimming recorded sounds, adjusting volume, normalizing, basic equalization. Learn these operations early — they're used on every sound asset.</div><span class="resource-tag tag-free">Free</span></div>
-          <div class="resource"><div class="resource-type">Library</div><div class="resource-name">Freesound.org</div><div class="resource-desc">Free CC-licensed sound library. Use for ambient sounds and realistic audio you can't synthesize. Always check license before use in a commercial release.</div><span class="resource-tag tag-free">Free</span></div>
+          <div class="resource"><div class="resource-type">Tool</div><div class="resource-name"><a href="https://www.bfxr.net" target="_blank" rel="noopener">BFXR</a></div><div class="resource-desc">Browser-based retro SFX generator. Random-generates starting points you can mutate. Produces jump, coin, explosion, laser, powerup sounds in seconds. Use for every project year 1.</div><span class="resource-tag tag-free">Free</span><span class="resource-tag tag-essential">Start Here</span></div>
+          <div class="resource"><div class="resource-type">Tool</div><div class="resource-name"><a href="https://sfbgames.itch.io/chiptone" target="_blank" rel="noopener">Chiptone</a></div><div class="resource-desc">More control than BFXR. Good for when you need a specific sound and BFXR's randomization isn't cutting it. Learn to understand the synthesis parameters.</div><span class="resource-tag tag-free">Free</span></div>
+          <div class="resource"><div class="resource-type">Tool</div><div class="resource-name"><a href="https://www.audacityteam.org" target="_blank" rel="noopener">Audacity</a></div><div class="resource-desc">Free audio editing. Use for: trimming recorded sounds, adjusting volume, normalizing, basic equalization. Learn these operations early &mdash; they're used on every sound asset.</div><span class="resource-tag tag-free">Free</span></div>
+          <div class="resource"><div class="resource-type">Library</div><div class="resource-name"><a href="https://freesound.org" target="_blank" rel="noopener">Freesound.org</a></div><div class="resource-desc">Free CC-licensed sound library. Use for ambient sounds and realistic audio you can't synthesize. Always check license before use in a commercial release.</div><span class="resource-tag tag-free">Free</span></div>
         </div>
         <div class="sub-section-title">Godot Audio Integration to Learn Early</div>
         <ul class="plain-list">
           <li><strong>AudioStreamPlayer vs AudioStreamPlayer2D:</strong> 2D version attenuates with distance. Use 2D for in-world sounds, regular for UI/music.</li>
-          <li><strong>Audio buses:</strong> Set up Master → Music and Master → SFX buses from the start of every project. Never hardcode volume.</li>
-          <li><strong>Pitch randomization:</strong> Randomize pitch_scale by ±0.1 on every SFX play call. Prevents the "machine gun" effect of repeated identical sounds. One line of code, massive feel improvement.</li>
-          <li><strong>AudioStreamRandomizer:</strong> Godot 4 resource that cycles through multiple audio clips. Use for footsteps, hits — any sound that repeats frequently.</li>
+          <li><strong>Audio buses:</strong> Set up Master &rarr; Music and Master &rarr; SFX buses from the start of every project. Never hardcode volume.</li>
+          <li><strong>Pitch randomization:</strong> Randomize pitch_scale by &plusmn;0.1 on every SFX play call. Prevents the "machine gun" effect of repeated identical sounds. One line of code, massive feel improvement.</li>
+          <li><strong>AudioStreamRandomizer:</strong> Godot 4 resource that cycles through multiple audio clips. Use for footsteps, hits &mdash; any sound that repeats frequently.</li>
         </ul>
       </div>
     </div>
 
     <div class="phase phase-purple">
-      <div class="phase-header">
-        <div><div class="phase-num">PHASE 4.2</div><div class="phase-title">Music Theory Foundations</div><div class="phase-timeline">Months 1–4 · 20–30 min, 4x per week</div></div>
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">PHASE 4.2</div><div class="phase-title">Music Theory Foundations</div><div class="phase-timeline">Months 1&ndash;4 &middot; 20&ndash;30 min, 4x per week</div></div>
+        <div class="phase-toggle">&#9662;</div>
       </div>
       <div class="phase-body">
-        <div class="phase-goal">Goal: Understand the building blocks of music well enough to compose intentionally. You must understand theory before tools — otherwise the DAW is a box of random buttons.</div>
+        <div class="phase-goal">Goal: Understand the building blocks of music well enough to compose intentionally. You must understand theory before tools &mdash; otherwise the DAW is a box of random buttons.</div>
         <div class="resource-grid">
-          <div class="resource"><div class="resource-type">Interactive</div><div class="resource-name">musictheory.net</div><div class="resource-desc">Free, structured interactive theory lessons. Work through the complete Lessons section (~20 hours total). Covers everything from reading notation to basic chord theory.</div><span class="resource-tag tag-free">Free</span><span class="resource-tag tag-essential">Start Here</span></div>
-          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name">8-Bit Music Theory</div><div class="resource-desc">Analyzes video game music composition. Perfect intersection of theory and practice for game devs. Covers why iconic game soundtracks work harmonically.</div><span class="resource-tag tag-free">Free</span><span class="resource-tag tag-essential">Essential</span></div>
-          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name">Adam Neely</div><div class="resource-desc">Deep, intellectually rigorous music theory education. Watch 2–3 videos/week. Specifically: his rhythm, harmony, and modal interchange videos.</div><span class="resource-tag tag-free">Free</span></div>
+          <div class="resource"><div class="resource-type">Interactive</div><div class="resource-name"><a href="https://www.musictheory.net/lessons" target="_blank" rel="noopener">musictheory.net</a></div><div class="resource-desc">Free, structured interactive theory lessons. Work through the complete Lessons section (~20 hours total). Covers everything from reading notation to basic chord theory.</div><span class="resource-tag tag-free">Free</span><span class="resource-tag tag-essential">Start Here</span></div>
+          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name"><a href="https://www.youtube.com/@8bitMusicTheory" target="_blank" rel="noopener">8-Bit Music Theory</a></div><div class="resource-desc">Analyzes video game music composition. Perfect intersection of theory and practice for game devs. Covers why iconic game soundtracks work harmonically.</div><span class="resource-tag tag-free">Free</span><span class="resource-tag tag-essential">Essential</span></div>
+          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name"><a href="https://www.youtube.com/@AdamNeely" target="_blank" rel="noopener">Adam Neely</a></div><div class="resource-desc">Deep, intellectually rigorous music theory education. Watch 2&ndash;3 videos/week. Specifically: his rhythm, harmony, and modal interchange videos.</div><span class="resource-tag tag-free">Free</span></div>
         </div>
         <div class="sub-section-title">Theory Concepts to Master (in order)</div>
         <ul class="plain-list">
           <li><strong>Notes, scales, and keys:</strong> Major scale, natural minor scale, pentatonic. Understand intervals. Absolute minimum.</li>
           <li><strong>Chord construction:</strong> Major triad, minor triad, diminished, augmented. Then dominant 7ths, major 7ths, minor 7ths.</li>
-          <li><strong>Chord progressions:</strong> Roman numeral analysis. Why I–IV–V–I sounds resolved. Common progressions (I–V–vi–IV). Learn by ear, not just sight.</li>
+          <li><strong>Chord progressions:</strong> Roman numeral analysis. Why I&ndash;IV&ndash;V&ndash;I sounds resolved. Common progressions (I&ndash;V&ndash;vi&ndash;IV). Learn by ear, not just sight.</li>
           <li><strong>Rhythm and time:</strong> 4/4, 3/4, 6/8. Syncopation. How to change tempo for game states without jarring transitions.</li>
           <li><strong>Melody construction:</strong> Tension and release. How to write a motif and develop it. AABA structure.</li>
-          <li><strong>Modes and color:</strong> Dorian (dark but not depressing — see Minecraft), Lydian (dreamy/ethereal — see Koji Kondo), Mixolydian (adventurous). These define the emotional signature of iconic game soundtracks.</li>
+          <li><strong>Modes and color:</strong> Dorian (dark but not depressing &mdash; see Minecraft), Lydian (dreamy/ethereal &mdash; see Koji Kondo), Mixolydian (adventurous). These define the emotional signature of iconic game soundtracks.</li>
         </ul>
       </div>
     </div>
 
     <div class="phase phase-purple">
-      <div class="phase-header">
-        <div><div class="phase-num">PHASE 4.3</div><div class="phase-title">Composing for Games — Loops & Adaptive Music</div><div class="phase-timeline">Months 3–8</div></div>
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">PHASE 4.3</div><div class="phase-title">Composing for Games &mdash; Loops & Adaptive Music</div><div class="phase-timeline">Months 3&ndash;8</div></div>
+        <div class="phase-toggle">&#9662;</div>
       </div>
       <div class="phase-body">
         <div class="phase-goal">Goal: Compose short, seamlessly looping tracks for different game states. Learn how music in games differs from music in other media.</div>
         <div class="callout">
-          <div class="callout-icon">◈</div>
+          <div class="callout-icon">&#9672;</div>
           <div class="callout-body"><strong>Game music is fundamentally different.</strong> It loops indefinitely. It plays under other sounds. It must not demand the listener's attention. It must emotionally support game states without exhausting the player. These constraints are your compositional framework.</div>
         </div>
         <div class="resource-grid">
-          <div class="resource"><div class="resource-type">DAW</div><div class="resource-name">LMMS → FL Studio / Ableton</div><div class="resource-desc">Start in LMMS. Once you understand loops and progressions, transition to FL Studio (lifetime free updates, ~$99) or Ableton Live Lite (often free with hardware). FL is more intuitive for beginners; Ableton scales better long-term.</div><span class="resource-tag tag-paid">FL: ~$99</span></div>
-          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name">In The Mix</div><div class="resource-desc">Excellent mixing and mastering tutorials for Ableton. Mixing is a separate skill from composition — this channel teaches it practically.</div><span class="resource-tag tag-free">Free</span></div>
-          <div class="resource"><div class="resource-type">Reference</div><div class="resource-name">Mandatory Analytical Listening</div><div class="resource-desc">Celeste OST (Lena Raine — layered adaptive music), Undertale OST (Toby Fox — leitmotifs), Hollow Knight OST (Christopher Larkin — atmosphere). Listen analytically, not passively.</div><span class="resource-tag tag-essential">Essential</span></div>
+          <div class="resource"><div class="resource-type">DAW</div><div class="resource-name"><a href="https://lmms.io" target="_blank" rel="noopener">LMMS</a> &rarr; <a href="https://www.image-line.com" target="_blank" rel="noopener">FL Studio</a> / <a href="https://www.ableton.com" target="_blank" rel="noopener">Ableton</a></div><div class="resource-desc">Start in LMMS. Once you understand loops and progressions, transition to FL Studio (lifetime free updates, ~$99) or Ableton Live Lite (often free with hardware). FL is more intuitive for beginners; Ableton scales better long-term.</div><span class="resource-tag tag-paid">FL: ~$99</span></div>
+          <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name"><a href="https://www.youtube.com/@inthemix" target="_blank" rel="noopener">In The Mix</a></div><div class="resource-desc">Excellent mixing and mastering tutorials for Ableton. Mixing is a separate skill from composition &mdash; this channel teaches it practically.</div><span class="resource-tag tag-free">Free</span></div>
+          <div class="resource"><div class="resource-type">Reference</div><div class="resource-name">Mandatory Analytical Listening</div><div class="resource-desc">Celeste OST (Lena Raine &mdash; layered adaptive music), Undertale OST (Toby Fox &mdash; leitmotifs), Hollow Knight OST (Christopher Larkin &mdash; atmosphere). Listen analytically, not passively.</div><span class="resource-tag tag-essential">Essential</span></div>
         </div>
         <div class="exercises">
           <div class="exercises-label">Composition Exercises</div>
-          <div class="exercise-item"><div class="exercise-num">01</div><div><div class="exercise-text">Write a 30-second seamlessly looping "exploration" track. It must loop without an audible seam, must not be melodically interesting enough to distract from gameplay, and must establish a clear mood. Use only 3–4 instruments.</div><div class="exercise-why">Most beginners write music that's too melodically dense for a game loop. Restraint is the skill.</div></div></div>
-          <div class="exercise-item"><div class="exercise-num">02</div><div><div class="exercise-text">Write a "danger" variant of the exploration track — same key, similar motif, faster tempo or minor mode shift. In Godot, implement a smooth crossfade between them when an enemy enters range. This is basic adaptive music.</div></div></div>
-          <div class="exercise-item"><div class="exercise-num">03</div><div><div class="exercise-text">"Leitmotif exercise" — write a 4-note melodic motif. Then write three variations: triumphant (major), sad (minor), mysterious (modal). Same 4 notes, same rhythm, different harmonic context. This teaches how Koji Kondo creates emotional through-lines.</div></div></div>
+          <div class="exercise-item"><div class="exercise-num">01</div><div><div class="exercise-text">Write a 30-second seamlessly looping "exploration" track. It must loop without an audible seam, must not be melodically interesting enough to distract from gameplay, and must establish a clear mood. Use only 3&ndash;4 instruments.</div><div class="exercise-why">Most beginners write music that's too melodically dense for a game loop. Restraint is the skill.</div></div></div>
+          <div class="exercise-item"><div class="exercise-num">02</div><div><div class="exercise-text">Write a "danger" variant of the exploration track &mdash; same key, similar motif, faster tempo or minor mode shift. In Godot, implement a smooth crossfade between them when an enemy enters range. This is basic adaptive music.</div></div></div>
+          <div class="exercise-item"><div class="exercise-num">03</div><div><div class="exercise-text">"Leitmotif exercise" &mdash; write a 4-note melodic motif. Then write three variations: triumphant (major), sad (minor), mysterious (modal). Same 4 notes, same rhythm, different harmonic context. This teaches how Koji Kondo creates emotional through-lines.</div></div></div>
         </div>
       </div>
     </div>
@@ -536,17 +810,18 @@
   <hr class="divider">
 
   <!-- TRACK 5 -->
-  <div class="section domain-ship">
-    <div class="section-title">Track 5 — The Hardest Part</div>
+  <div class="section domain-ship" id="track-5">
+    <div class="section-title">Track 5 &mdash; The Hardest Part</div>
     <div class="track-header">
-      <div class="track-icon">⬡</div>
+      <div class="track-icon">&#11041;</div>
       <div><div class="track-sub">What Most Guides Skip</div><h2>Finishing & Shipping</h2></div>
     </div>
     <p style="font-size:12px; color:var(--text-dim); margin-bottom:24px; line-height:1.8;">Finishing games is its own skill, and it requires deliberate systems. The graveyard of abandoned prototypes is where most solo devs live permanently.</p>
 
     <div class="phase phase-blue">
-      <div class="phase-header">
-        <div><div class="phase-num">PHASE 5.1</div><div class="phase-title">The Scope Contract</div><div class="phase-timeline">Apply from day one — ongoing</div></div>
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">PHASE 5.1</div><div class="phase-title">The Scope Contract</div><div class="phase-timeline">Apply from day one &mdash; ongoing</div></div>
+        <div class="phase-toggle">&#9662;</div>
       </div>
       <div class="phase-body">
         <div class="principle-block" style="border-color: var(--accent-blue)">
@@ -559,12 +834,12 @@
         </div>
         <div class="principle-block" style="border-color: var(--accent-blue)">
           <div class="principle-title">The Vertical Slice Milestone</div>
-          <div class="principle-body">Before any other feature work, build one complete, polished vertical slice — one level, one enemy type, one mechanic — with final art and audio. This slice should be releasable as a demo. Everything else is parallel extension. This prevents the "everything is 80% done and nothing is shippable" trap.</div>
+          <div class="principle-body">Before any other feature work, build one complete, polished vertical slice &mdash; one level, one enemy type, one mechanic &mdash; with final art and audio. This slice should be releasable as a demo. Everything else is parallel extension. This prevents the "everything is 80% done and nothing is shippable" trap.</div>
         </div>
         <div class="sub-section-title">Project Management for Solo Devs</div>
         <ul class="plain-list">
           <li><strong>Simple kanban:</strong> Three columns: To Do / In Progress / Done. Never have more than 3 items In Progress at once.</li>
-          <li><strong>2-week sprints:</strong> Every sprint has a defined deliverable — not "work on enemy AI," but "enemy can detect player, chase them, and deal damage." Testable, binary.</li>
+          <li><strong>2-week sprints:</strong> Every sprint has a defined deliverable &mdash; not "work on enemy AI," but "enemy can detect player, chase them, and deal damage." Testable, binary.</li>
           <li><strong>"Maybe later" list:</strong> When you have a feature idea mid-project, write it down and don't implement it. Every project generates scope-expanding ideas.</li>
           <li><strong>Set a ship date before you start:</strong> Not "when it's done." A real calendar date. A game with no ship date is a game that never ships.</li>
         </ul>
@@ -572,13 +847,14 @@
     </div>
 
     <div class="phase phase-blue">
-      <div class="phase-header">
+      <div class="phase-header" onclick="togglePhase(this)">
         <div><div class="phase-num">PHASE 5.2</div><div class="phase-title">Where and How to Release</div><div class="phase-timeline">As soon as you finish your first game</div></div>
+        <div class="phase-toggle">&#9662;</div>
       </div>
       <div class="phase-body">
         <div class="resource-grid">
-          <div class="resource"><div class="resource-type">Platform</div><div class="resource-name">itch.io</div><div class="resource-desc">Your default release platform for every game. Free to list. Supports web builds (HTML5), Windows, Mac, Linux. Game jams are hosted here. Release everything here, even jam entries.</div><span class="resource-tag tag-free">Free</span><span class="resource-tag tag-essential">Start Here</span></div>
-          <div class="resource"><div class="resource-type">Platform</div><div class="resource-name">Steam (later)</div><div class="resource-desc">$100 one-time fee per title. Only relevant for Year 2+ when you have a game that justifies the audience. Don't think about it until you've shipped on itch first.</div><span class="resource-tag tag-paid">$100/game</span></div>
+          <div class="resource"><div class="resource-type">Platform</div><div class="resource-name"><a href="https://itch.io" target="_blank" rel="noopener">itch.io</a></div><div class="resource-desc">Your default release platform for every game. Free to list. Supports web builds (HTML5), Windows, Mac, Linux. Game jams are hosted here. Release everything here, even jam entries.</div><span class="resource-tag tag-free">Free</span><span class="resource-tag tag-essential">Start Here</span></div>
+          <div class="resource"><div class="resource-type">Platform</div><div class="resource-name"><a href="https://store.steampowered.com" target="_blank" rel="noopener">Steam</a> (later)</div><div class="resource-desc">$100 one-time fee per title. Only relevant for Year 2+ when you have a game that justifies the audience. Don't think about it until you've shipped on itch first.</div><span class="resource-tag tag-paid">$100/game</span></div>
         </div>
         <div class="sub-section-title">Playtest Before Release</div>
         <ul class="plain-list">
@@ -592,16 +868,17 @@
   <hr class="divider">
 
   <!-- ROADMAPS -->
-  <div class="section">
+  <div class="section" id="roadmaps">
     <div class="section-title">Integrated Timeline</div>
     <div class="track-header">
-      <div class="track-icon" style="color:#888; border-color:#444">◑</div>
+      <div class="track-icon" style="color:#888; border-color:#444">&#9681;</div>
       <div><div class="track-sub">What to actually do and when</div><h2>Year 1 & Year 2 Roadmaps</h2></div>
     </div>
 
     <div class="phase phase-gold">
-      <div class="phase-header">
-        <div><div class="phase-num">YEAR 1 / Q1</div><div class="phase-title">Months 1–3: Foundations & First Completions</div></div>
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">YEAR 1 / Q1</div><div class="phase-title">Months 1&ndash;3: Foundations & First Completions</div></div>
+        <div class="phase-toggle">&#9662;</div>
       </div>
       <div class="phase-body">
         <div class="phase-goal">The most important quarter. Build the habit infrastructure. Finish three tiny complete games.</div>
@@ -611,32 +888,33 @@
           <li><strong>Art:</strong> Start BJG's pixel art series. Draw basic objects daily at 16x16. Pick one palette and don't change it.</li>
           <li><strong>Music:</strong> Start musictheory.net lessons. Install LMMS. Use BFXR for all SFX.</li>
           <li><strong>Design:</strong> Read "A Theory of Fun." Write design autopsies on 4 games you play this month.</li>
-          <li><strong>Ship:</strong> Release one game on itch.io — a 5-minute Pong clone with BFXR sounds and basic pixel sprites. Don't wait for it to be good.</li>
+          <li><strong>Ship:</strong> Release one game on itch.io &mdash; a 5-minute Pong clone with BFXR sounds and basic pixel sprites. Don't wait for it to be good.</li>
         </ul>
         <div class="sub-section-title">Month 2</div>
         <ul class="plain-list">
           <li><strong>Godot:</strong> Build a complete platformer: player controller, 2 enemy types, collectibles, basic HUD, win/lose state. Use pixel art you made.</li>
-          <li><strong>Art:</strong> Character design at 32x32 — front and side-facing. Begin tileset work. Post your art online for critique.</li>
+          <li><strong>Art:</strong> Character design at 32x32 &mdash; front and side-facing. Begin tileset work. Post your art online for critique.</li>
           <li><strong>Music:</strong> Finish musictheory.net basics. Write your first 30-second loop in LMMS. Doesn't need to be good.</li>
-          <li><strong>Design:</strong> Start "Art of Game Design" — one chapter per week. Write a one-page GDD for your next project before building it.</li>
+          <li><strong>Design:</strong> Start "Art of Game Design" &mdash; one chapter per week. Write a one-page GDD for your next project before building it.</li>
           <li><strong>Ship:</strong> Release that platformer on itch.io. It will be rough. Ship it anyway.</li>
         </ul>
         <div class="sub-section-title">Month 3</div>
         <ul class="plain-list">
-          <li><strong>Godot:</strong> Build something mechanically different — a top-down shooter or puzzle game. Practice state machines and signals.</li>
+          <li><strong>Godot:</strong> Build something mechanically different &mdash; a top-down shooter or puzzle game. Practice state machines and signals.</li>
           <li><strong>Art:</strong> Walk cycle attempt #1. 4-frame idle animation. Animate your sprites in the game.</li>
           <li><strong>Music:</strong> Compose a music track for one game state. Integrate it in Godot with proper audio bus setup.</li>
-          <li><strong>Jam:</strong> Enter your first game jam (Ludum Dare or GMTK). Mandatory. Treat it as a learning event, not a competition.</li>
+          <li><strong>Jam:</strong> Enter your first game jam (<a href="https://ldjam.com" target="_blank" rel="noopener">Ludum Dare</a> or GMTK). Mandatory. Treat it as a learning event, not a competition.</li>
         </ul>
       </div>
     </div>
 
     <div class="phase phase-teal">
-      <div class="phase-header">
-        <div><div class="phase-num">YEAR 1 / Q2–Q3</div><div class="phase-title">Months 4–9: Skill Deepening & Second Projects</div></div>
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">YEAR 1 / Q2&ndash;Q3</div><div class="phase-title">Months 4&ndash;9: Skill Deepening & Second Projects</div></div>
+        <div class="phase-toggle">&#9662;</div>
       </div>
       <div class="phase-body">
-        <div class="phase-goal">Deeper technical work on all five tracks. Complete 3–4 more games, each slightly more ambitious. Start learning shaders and intermediate music production.</div>
+        <div class="phase-goal">Deeper technical work on all five tracks. Complete 3&ndash;4 more games, each slightly more ambitious. Start learning shaders and intermediate music production.</div>
         <ul class="plain-list">
           <li>Build one game that uses procedural generation OR a complex dialogue system OR a tile-based dungeon. Something that pushes you technically.</li>
           <li>Pixel art: begin environment art. Create one complete game scene with background, midground, and foreground layers.</li>
@@ -648,14 +926,15 @@
     </div>
 
     <div class="phase phase-rose">
-      <div class="phase-header">
-        <div><div class="phase-num">YEAR 1 / Q4</div><div class="phase-title">Months 10–12: Integration & First "Real" Game</div></div>
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div><div class="phase-num">YEAR 1 / Q4</div><div class="phase-title">Months 10&ndash;12: Integration & First "Real" Game</div></div>
+        <div class="phase-toggle">&#9662;</div>
       </div>
       <div class="phase-body">
-        <div class="phase-goal">Design and ship your most ambitious game to date — a real, complete, polished product within your current capability.</div>
+        <div class="phase-goal">Design and ship your most ambitious game to date &mdash; a real, complete, polished product within your current capability.</div>
         <ul class="plain-list">
           <li>Write a full GDD before touching Godot. Scope it to 6 weeks. Cut it in half.</li>
-          <li>Build vertical slice first — fully polished single level with final art and audio.</li>
+          <li>Build vertical slice first &mdash; fully polished single level with final art and audio.</li>
           <li>All art original. All audio original or licensed CC with attribution.</li>
           <li>Playtested by at least 5 real people before release.</li>
           <li>Released on itch.io with screenshots, cover image, and a 3-sentence description.</li>
@@ -664,15 +943,16 @@
     </div>
 
     <div class="phase phase-purple">
-      <div class="phase-header">
+      <div class="phase-header" onclick="togglePhase(this)">
         <div><div class="phase-num">YEAR 2</div><div class="phase-title">Towards a Real Steam Release</div></div>
+        <div class="phase-toggle">&#9662;</div>
       </div>
       <div class="phase-body">
-        <div class="phase-goal">One project you're willing to stand behind publicly. 6–9 months of production. The second half is polishing, marketing basics, and release.</div>
+        <div class="phase-goal">One project you're willing to stand behind publicly. 6&ndash;9 months of production. The second half is polishing, marketing basics, and release.</div>
         <ul class="plain-list">
-          <li><strong>Design:</strong> 2–4 weeks on a comprehensive GDD. Get feedback from 3 people on the design doc before a single line of code.</li>
+          <li><strong>Design:</strong> 2&ndash;4 weeks on a comprehensive GDD. Get feedback from 3 people on the design doc before a single line of code.</li>
           <li><strong>Godot:</strong> Architecture first. Define your scene hierarchy, signal graph, and data flow before prototyping.</li>
-          <li><strong>Art:</strong> Consistent visual language — palette, scale, outline style — documented in a style guide you refer to throughout development.</li>
+          <li><strong>Art:</strong> Consistent visual language &mdash; palette, scale, outline style &mdash; documented in a style guide you refer to throughout development.</li>
           <li><strong>Music:</strong> Original soundtrack. Minimum 3 tracks. Adaptive audio for at least one game state transition.</li>
           <li><strong>Marketing:</strong> Start a devlog on itch.io and Reddit from day one. Weekly GIFs of progress. Build your audience before you ship.</li>
           <li><strong>Release:</strong> Steam if the game justifies it. itch.io always. Build a press kit: screenshots, trailer, description, credits.</li>
@@ -684,15 +964,15 @@
   <hr class="divider">
 
   <!-- FAILURE MODES -->
-  <div class="section">
+  <div class="section" id="failures">
     <div class="section-title">Critical Warnings</div>
     <div class="track-header">
-      <div class="track-icon" style="color:var(--accent-rose); border-color:var(--accent-rose)">✕</div>
+      <div class="track-icon" style="color:var(--accent-rose); border-color:var(--accent-rose)">&#10005;</div>
       <div><div class="track-sub">The common ways this goes wrong</div><h2>Failure Modes</h2></div>
     </div>
     <div class="principle-block" style="border-color: var(--accent-rose)"><div class="principle-title">Tutorial Hell</div><div class="principle-body">Following tutorials indefinitely without making things from scratch. After every tutorial, close it and rebuild the same thing from memory. Then build something adjacent from scratch. The switch from following to creating is where actual skill forms.</div></div>
     <div class="principle-block" style="border-color: var(--accent-rose)"><div class="principle-title">The Dream Game</div><div class="principle-body">Trying to make your dream game as project #1, #2, or #3. Your dream game requires skills you don't have yet. The moment you start a project that requires skills you don't have, you will either get stuck or accumulate technical debt so severe the project becomes unmaintainable.</div></div>
-    <div class="principle-block" style="border-color: var(--accent-rose)"><div class="principle-title">Tool Switching</div><div class="principle-body">Switching from Godot to Unity to Unreal because each seems to offer something the previous didn't. It doesn't. Every engine switch costs 2–4 weeks of reorientation and zero shipping. Commit to Godot for two years before evaluating alternatives.</div></div>
+    <div class="principle-block" style="border-color: var(--accent-rose)"><div class="principle-title">Tool Switching</div><div class="principle-body">Switching from Godot to Unity to Unreal because each seems to offer something the previous didn't. It doesn't. Every engine switch costs 2&ndash;4 weeks of reorientation and zero shipping. Commit to Godot for two years before evaluating alternatives.</div></div>
     <div class="principle-block" style="border-color: var(--accent-rose)"><div class="principle-title">Asset Store Dependency</div><div class="principle-body">Using purchased art and audio instead of making your own. This prevents the art and music tracks from compounding. Asset packs are acceptable for game jams and prototypes. Original assets only for games you intend to release.</div></div>
     <div class="principle-block" style="border-color: var(--accent-rose)"><div class="principle-title">Passive Consumption</div><div class="principle-body">Watching YouTube videos about game dev instead of making games. The ratio should be: for every hour of content consumed, two hours of active practice. If you've watched more hours of game dev content than you've spent in Godot or Aseprite this month, you're in passive consumption mode.</div></div>
     <div class="principle-block" style="border-color: var(--accent-rose)"><div class="principle-title">Skipping Music</div><div class="principle-body">Treating music as optional. A silent game will get fewer plays, fewer ratings, and less feedback. Use BFXR and a single looping track from day one, even if they're rough. Bad audio beats no audio for player engagement.</div></div>
@@ -701,55 +981,124 @@
   <hr class="divider">
 
   <!-- TOOLBOX -->
-  <div class="section">
+  <div class="section" id="toolbox">
     <div class="section-title">Reference</div>
     <div class="track-header">
-      <div class="track-icon" style="color:#888; border-color:#444">⊞</div>
+      <div class="track-icon" style="color:#888; border-color:#444">&#8862;</div>
       <div><div class="track-sub">Quick Reference</div><h2>Full Toolbox</h2></div>
     </div>
     <div class="sub-section-title">Must-Have Software</div>
     <div class="resource-grid">
-      <div class="resource"><div class="resource-type">Engine</div><div class="resource-name">Godot 4</div><div class="resource-desc">godotengine.org</div><span class="resource-tag tag-free">Free</span></div>
-      <div class="resource"><div class="resource-type">Pixel Art</div><div class="resource-name">Aseprite</div><div class="resource-desc">aseprite.org / Steam</div><span class="resource-tag tag-paid">$20</span></div>
-      <div class="resource"><div class="resource-type">SFX</div><div class="resource-name">BFXR</div><div class="resource-desc">bfxr.net</div><span class="resource-tag tag-free">Free</span></div>
-      <div class="resource"><div class="resource-type">DAW</div><div class="resource-name">LMMS → FL Studio</div><div class="resource-desc">lmms.io / image-line.com</div><span class="resource-tag tag-free">Free → Paid</span></div>
-      <div class="resource"><div class="resource-type">Audio Edit</div><div class="resource-name">Audacity</div><div class="resource-desc">audacityteam.org</div><span class="resource-tag tag-free">Free</span></div>
-      <div class="resource"><div class="resource-type">Palettes</div><div class="resource-name">Lospec</div><div class="resource-desc">lospec.com</div><span class="resource-tag tag-free">Free</span></div>
-      <div class="resource"><div class="resource-type">Version Control</div><div class="resource-name">Git + GitHub</div><div class="resource-desc">github.com</div><span class="resource-tag tag-free">Free</span></div>
-      <div class="resource"><div class="resource-type">Release</div><div class="resource-name">itch.io</div><div class="resource-desc">itch.io</div><span class="resource-tag tag-free">Free</span></div>
+      <div class="resource"><div class="resource-type">Engine</div><div class="resource-name"><a href="https://godotengine.org" target="_blank" rel="noopener">Godot 4</a></div><div class="resource-desc">godotengine.org</div><span class="resource-tag tag-free">Free</span></div>
+      <div class="resource"><div class="resource-type">Pixel Art</div><div class="resource-name"><a href="https://www.aseprite.org" target="_blank" rel="noopener">Aseprite</a></div><div class="resource-desc">aseprite.org / Steam</div><span class="resource-tag tag-paid">$20</span></div>
+      <div class="resource"><div class="resource-type">SFX</div><div class="resource-name"><a href="https://www.bfxr.net" target="_blank" rel="noopener">BFXR</a></div><div class="resource-desc">bfxr.net</div><span class="resource-tag tag-free">Free</span></div>
+      <div class="resource"><div class="resource-type">DAW</div><div class="resource-name"><a href="https://lmms.io" target="_blank" rel="noopener">LMMS</a> &rarr; <a href="https://www.image-line.com" target="_blank" rel="noopener">FL Studio</a></div><div class="resource-desc">lmms.io / image-line.com</div><span class="resource-tag tag-free">Free &rarr; Paid</span></div>
+      <div class="resource"><div class="resource-type">Audio Edit</div><div class="resource-name"><a href="https://www.audacityteam.org" target="_blank" rel="noopener">Audacity</a></div><div class="resource-desc">audacityteam.org</div><span class="resource-tag tag-free">Free</span></div>
+      <div class="resource"><div class="resource-type">Palettes</div><div class="resource-name"><a href="https://lospec.com/palette-list" target="_blank" rel="noopener">Lospec</a></div><div class="resource-desc">lospec.com</div><span class="resource-tag tag-free">Free</span></div>
+      <div class="resource"><div class="resource-type">Version Control</div><div class="resource-name"><a href="https://github.com" target="_blank" rel="noopener">Git + GitHub</a></div><div class="resource-desc">github.com</div><span class="resource-tag tag-free">Free</span></div>
+      <div class="resource"><div class="resource-type">Release</div><div class="resource-name"><a href="https://itch.io" target="_blank" rel="noopener">itch.io</a></div><div class="resource-desc">itch.io</div><span class="resource-tag tag-free">Free</span></div>
     </div>
 
     <div class="sub-section-title">Essential YouTube Channels</div>
     <div class="resource-grid">
-      <div class="resource"><div class="resource-name">GDQuest</div><div class="resource-desc">Best structured Godot 4 education</div></div>
-      <div class="resource"><div class="resource-name">GMTK</div><div class="resource-desc">Best applied game design analysis</div></div>
-      <div class="resource"><div class="resource-name">Brandon James Greer</div><div class="resource-desc">Best pixel art beginner education</div></div>
-      <div class="resource"><div class="resource-name">AdamCYounis</div><div class="resource-desc">Pixel art animation and practical technique</div></div>
-      <div class="resource"><div class="resource-name">8-Bit Music Theory</div><div class="resource-desc">Game music theory — essential</div></div>
-      <div class="resource"><div class="resource-name">HeartBeast</div><div class="resource-desc">Godot project-based learning, RPG systems</div></div>
-      <div class="resource"><div class="resource-name">Snoman Gaming</div><div class="resource-desc">Level design analysis</div></div>
-      <div class="resource"><div class="resource-name">In The Mix</div><div class="resource-desc">Mixing and mastering in Ableton</div></div>
+      <div class="resource"><div class="resource-name"><a href="https://www.youtube.com/@GDQuest" target="_blank" rel="noopener">GDQuest</a></div><div class="resource-desc">Best structured Godot 4 education</div></div>
+      <div class="resource"><div class="resource-name"><a href="https://www.youtube.com/@GMTK" target="_blank" rel="noopener">GMTK</a></div><div class="resource-desc">Best applied game design analysis</div></div>
+      <div class="resource"><div class="resource-name"><a href="https://www.youtube.com/@BJGpixel" target="_blank" rel="noopener">Brandon James Greer</a></div><div class="resource-desc">Best pixel art beginner education</div></div>
+      <div class="resource"><div class="resource-name"><a href="https://www.youtube.com/@AdamCYounis" target="_blank" rel="noopener">AdamCYounis</a></div><div class="resource-desc">Pixel art animation and practical technique</div></div>
+      <div class="resource"><div class="resource-name"><a href="https://www.youtube.com/@8bitMusicTheory" target="_blank" rel="noopener">8-Bit Music Theory</a></div><div class="resource-desc">Game music theory &mdash; essential</div></div>
+      <div class="resource"><div class="resource-name"><a href="https://www.youtube.com/@uaborea" target="_blank" rel="noopener">HeartBeast</a></div><div class="resource-desc">Godot project-based learning, RPG systems</div></div>
+      <div class="resource"><div class="resource-name"><a href="https://www.youtube.com/@SnomanGaming" target="_blank" rel="noopener">Snoman Gaming</a></div><div class="resource-desc">Level design analysis</div></div>
+      <div class="resource"><div class="resource-name"><a href="https://www.youtube.com/@inthemix" target="_blank" rel="noopener">In The Mix</a></div><div class="resource-desc">Mixing and mastering in Ableton</div></div>
     </div>
 
     <div class="sub-section-title">Essential Books (priority order)</div>
     <div class="resource-grid">
-      <div class="resource"><div class="resource-name">A Theory of Fun — Koster</div><div class="resource-desc">Read immediately. Changes how you see games.</div><span class="resource-tag tag-essential">First</span></div>
-      <div class="resource"><div class="resource-name">Art of Game Design — Schell</div><div class="resource-desc">Your design reference for years.</div><span class="resource-tag tag-essential">Second</span></div>
-      <div class="resource"><div class="resource-name">Game Feel — Swink</div><div class="resource-desc">After your third Godot project.</div></div>
-      <div class="resource"><div class="resource-name">Pixel Logic — Azzi</div><div class="resource-desc">After 3 months of pixel art practice.</div></div>
-      <div class="resource"><div class="resource-name">Animator's Survival Kit — Williams</div><div class="resource-desc">Study alongside animation phases.</div></div>
-      <div class="resource"><div class="resource-name">Rules of Play — Salen & Zimmerman</div><div class="resource-desc">Academic systems design. Year 2.</div></div>
+      <div class="resource"><div class="resource-name">A Theory of Fun &mdash; Koster</div><div class="resource-desc">Read immediately. Changes how you see games.</div><span class="resource-tag tag-essential">First</span></div>
+      <div class="resource"><div class="resource-name">Art of Game Design &mdash; Schell</div><div class="resource-desc">Your design reference for years.</div><span class="resource-tag tag-essential">Second</span></div>
+      <div class="resource"><div class="resource-name">Game Feel &mdash; Swink</div><div class="resource-desc">After your third Godot project.</div></div>
+      <div class="resource"><div class="resource-name"><a href="https://pixellogicbook.com" target="_blank" rel="noopener">Pixel Logic &mdash; Azzi</a></div><div class="resource-desc">After 3 months of pixel art practice.</div></div>
+      <div class="resource"><div class="resource-name">Animator's Survival Kit &mdash; Williams</div><div class="resource-desc">Study alongside animation phases.</div></div>
+      <div class="resource"><div class="resource-name">Rules of Play &mdash; Salen & Zimmerman</div><div class="resource-desc">Academic systems design. Year 2.</div></div>
     </div>
   </div>
 
   <div style="border-top: 1px solid var(--border); padding-top: 32px; margin-top: 40px; text-align: center;">
     <p style="font-size: 11px; color: var(--text-dim); letter-spacing: 0.1em; line-height: 2;">
       The measure of a solo dev is not skill in any one discipline.<br>
-      It is the ability to <em style="color: var(--accent-gold)">finish things</em> — imperfectly, repeatedly, without permission.
+      It is the ability to <em style="color: var(--accent-gold)">finish things</em> &mdash; imperfectly, repeatedly, without permission.
     </p>
-    <p style="font-size: 10px; color: var(--text-dim); opacity: 0.3; margin-top: 12px; letter-spacing: 0.08em;">v2.0</p>
+    <p style="font-size: 10px; color: var(--text-dim); opacity: 0.3; margin-top: 12px; letter-spacing: 0.08em;">v2.1</p>
   </div>
 
 </div>
+
+<script>
+  // ── Phase collapse/expand ──
+  function togglePhase(header) {
+    header.closest('.phase').classList.toggle('collapsed');
+  }
+
+  function toggleAllPhases() {
+    const phases = document.querySelectorAll('.phase');
+    const btn = document.getElementById('collapseAllBtn');
+    const allCollapsed = [...phases].every(p => p.classList.contains('collapsed'));
+
+    phases.forEach(p => {
+      if (allCollapsed) {
+        p.classList.remove('collapsed');
+      } else {
+        p.classList.add('collapsed');
+      }
+    });
+
+    btn.textContent = allCollapsed ? 'Collapse All Sections' : 'Expand All Sections';
+  }
+
+  // ── Mobile nav ──
+  function toggleMobileNav() {
+    document.getElementById('sidebar').classList.toggle('open');
+    document.getElementById('sidebarOverlay').classList.toggle('active');
+  }
+
+  // Close mobile nav when a link is clicked
+  document.querySelectorAll('.sidebar-nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 1100) {
+        document.getElementById('sidebar').classList.remove('open');
+        document.getElementById('sidebarOverlay').classList.remove('active');
+      }
+    });
+  });
+
+  // ── Back to top button ──
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+
+  // ── Active nav highlighting via Intersection Observer ──
+  const sections = document.querySelectorAll('[id]');
+  const navLinks = document.querySelectorAll('.sidebar-nav a[data-section]');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.dataset.section === id);
+        });
+      }
+    });
+  }, {
+    rootMargin: '-10% 0px -80% 0px',
+    threshold: 0
+  });
+
+  sections.forEach(section => {
+    if (section.id && document.querySelector(`.sidebar-nav a[data-section="${section.id}"]`)) {
+      observer.observe(section);
+    }
+  });
+</script>
 </body>
 </html>
