@@ -408,7 +408,7 @@
   <div class="hero" id="top">
     <div class="hero-label">A Long-Arc Guide</div>
     <h1>Making <em>Games</em><br>as One Person</h1>
-    <p class="hero-desc">A structured, multi-year path through game design, Godot, pixel art, and music composition &mdash; built for someone who can code but has never shipped a game or touched a brush.</p>
+    <p class="hero-desc">A structured, multi-year path through game design, Godot, pixel art, and music composition. Built for someone who can code but has never shipped a game or touched a brush.</p>
     <div class="hero-meta">
       <div class="hero-stat"><span class="hero-stat-val">~2yr</span><span class="hero-stat-label">To first real game</span></div>
       <div class="hero-stat"><span class="hero-stat-val">5</span><span class="hero-stat-label">Parallel skill tracks</span></div>
@@ -417,10 +417,10 @@
   </div>
 
   <div class="philosophy">
-    <h3>Core Philosophy of This Guide</h3>
-    <p>The most dangerous trap for solo devs is <strong>scope delusion</strong> &mdash; believing you can learn everything in parallel while building your dream game. You cannot. This guide is built around a different principle: <strong>skills compound when you finish things, not when you learn things.</strong></p>
-    <p>Every phase ends with a completed, shipped artifact &mdash; however small. You will make ugly games. They will have bad music and worse art. Ship them anyway. The muscle memory of finishing is the skill that most aspiring solo devs never build, and it is the prerequisite for everything else.</p>
-    <p>The five tracks &mdash; Game Design, Godot, Art, Music, and Shipping &mdash; are taught in parallel but with deliberately mismatched pacing. Art and music require years of slow accumulation. Design requires theory plus many finished experiments. Godot is your fastest ramp because you already know how to think computationally.</p>
+    <h3>How This Guide Is Structured</h3>
+    <p>The biggest trap in solo game dev is scope: believing you can learn everything in parallel while building your dream game. This guide is organized around one idea instead: skills compound when you finish things. Finishing a bad game teaches you more than studying a good one.</p>
+    <p>Every phase ends with a shipped artifact, however small. The games will have rough art, mediocre music, and obvious problems. Ship them anyway. Most aspiring solo devs never build the habit of finishing, and without it nothing else sticks.</p>
+    <p>The five tracks (Game Design, Godot, Art, Music, and Shipping) run in parallel with mismatched pacing by design. Art and music take years of slow accumulation. Design needs theory plus finished experiments. Godot will be the fastest track for someone who already thinks like a programmer.</p>
   </div>
 
   <div class="toc">
@@ -448,7 +448,7 @@
 
     <div class="callout">
       <div class="callout-icon">&#9888;</div>
-      <div class="callout-body"><strong>The hardest thing in solo game dev isn't learning the skills.</strong> It's calibrating scope. You will always want to make something larger than your current ability. The discipline of making something <em>smaller</em> than you think you need to is the foundational meta-skill. Every game you make should be completable within your current skill set.</div>
+      <div class="callout-body">Calibrating scope is harder than learning the skills. You will always want to make something larger than your current ability supports. Every game you start should be completable with the skills you have right now, and your first scope estimate should always come down.</div>
     </div>
 
     <div class="sub-section-title">Install These Immediately</div>
@@ -464,15 +464,15 @@
     <div class="sub-section-title">The Right Mental Model</div>
     <div class="principle-block" style="border-color: var(--accent-gold)">
       <div class="principle-title">You Are Learning Five Crafts Simultaneously</div>
-      <div class="principle-body">Game design, programming, visual art, music, and project management are each independently 10,000-hour disciplines. You will be a beginner in all of them for years. The goal isn't mastery &mdash; it's <em>sufficient proficiency in each</em> to finish a small cohesive game. Your coding background gives you a massive head start in one of the five. Use that to finish things early while the other four catch up.</div>
+      <div class="principle-body">Game design, programming, visual art, music, and project management are each independently deep disciplines. You will be a beginner in all of them for years. The target is sufficient proficiency in each to finish a small cohesive game. Your coding background gives you a head start in one of the five. Use it to finish things while the other four catch up.</div>
     </div>
     <div class="principle-block" style="border-color: var(--accent-teal)">
       <div class="principle-title">Breadth First, Depth Second</div>
-      <div class="principle-body">Before Year 1 is over, you should have finished at least 6&ndash;10 tiny complete games. Not prototypes with placeholders &mdash; finished games, however rough, with art and sound integrated. The workflow of shipping is the skill. You will learn more about game feel from shipping 10 ugly games than from reading 10 books about game design.</div>
+      <div class="principle-body">Before Year 1 is over, aim to have finished at least 6&ndash;10 tiny complete games. These should have art and sound integrated, not placeholder assets. Shipping is a workflow you have to practice. Ten ugly finished games will teach you more about game feel than any number of books.</div>
     </div>
     <div class="principle-block" style="border-color: var(--accent-rose)">
       <div class="principle-title">Separate Practice from Production</div>
-      <div class="principle-body">When you practice piano, you don't write a symphony. Treat your art, music, and design study sessions as separate from your game projects. Have a sketchbook. Have a DAW project folder full of dead loops. Have a folder of Godot experiments that are never games. Cross-contaminating practice with production causes both to suffer.</div>
+      <div class="principle-body">Keep your study sessions separate from your game projects. Have a sketchbook. Have a DAW project folder full of unfinished loops. Have a folder of Godot experiments that never become games. Mixing practice time into production makes both worse.</div>
     </div>
   </div>
 
@@ -485,7 +485,7 @@
       <div class="track-icon">&#9823;</div>
       <div><div class="track-sub">The Intellectual Core</div><h2>Game Design</h2></div>
     </div>
-    <p style="font-size:12px; color:var(--text-dim); margin-bottom:24px; line-height:1.8;">Game design is not about rules and mechanics in isolation. It is the practice of engineering human experiences through systems. Most beginners skip the theory and wonder why their games feel empty.</p>
+    <p style="font-size:12px; color:var(--text-dim); margin-bottom:24px; line-height:1.8;">Game design is the practice of shaping player experience through rules and systems. Most beginners skip the theory entirely and spend months wondering why their games feel flat.</p>
 
     <div class="phase phase-gold">
       <div class="phase-header" onclick="togglePhase(this)">
@@ -502,7 +502,7 @@
         </div>
         <div class="exercises">
           <div class="exercises-label">Exercises</div>
-          <div class="exercise-item"><div class="exercise-num">01</div><div><div class="exercise-text">After every game you play, write a 200-word "design autopsy" &mdash; what is the core mechanic, what does it teach the player, what was the feedback loop, what did it do well/poorly.</div><div class="exercise-why">Builds the habit of analytical observation. Most devs play games passively. You need to play them as an engineer.</div></div></div>
+          <div class="exercise-item"><div class="exercise-num">01</div><div><div class="exercise-text">After every game you play, write a 200-word "design autopsy" &mdash; what is the core mechanic, what does it teach the player, what was the feedback loop, what did it do well/poorly.</div><div class="exercise-why">Builds analytical observation. Most devs play games without examining them. This forces you to do both at once.</div></div></div>
           <div class="exercise-item"><div class="exercise-num">02</div><div><div class="exercise-text">Pick a simple game (Chess, Tetris, Flappy Bird) and write a complete design document from scratch &mdash; as if you're designing it for the first time. Include core loop, player goals, feedback mechanisms, and win/lose conditions.</div></div></div>
           <div class="exercise-item"><div class="exercise-num">03</div><div><div class="exercise-text">Play and dissect 3 games in radically different genres: a puzzle game, a platformer, and a roguelike. For each, identify the core loop, the primary skill the player develops, and the moment-to-moment feedback.</div><div class="exercise-why">Cross-genre analysis prevents tunnel vision. Most devs only analyze the genre they want to make.</div></div></div>
         </div>
@@ -515,10 +515,10 @@
         <div class="phase-toggle">&#9662;</div>
       </div>
       <div class="phase-body">
-        <div class="phase-goal">Goal: Build the habit of translating ideas into structured design documents. Design is a muscle &mdash; it requires regular output, not just consumption.</div>
+        <div class="phase-goal">Goal: Build the habit of translating ideas into structured design documents. Design improves through regular output, not just reading about it.</div>
         <div class="principle-block" style="border-color: var(--accent-gold)">
           <div class="principle-title">The One-Page GDD Format</div>
-          <div class="principle-body">For every small game you make, write a one-page GDD first. Include: <strong>Core fantasy</strong> (what does the player feel?), <strong>Core loop</strong> (what do you do every 30 seconds?), <strong>Win/loss condition</strong>, <strong>Single distinguishing mechanic</strong>, <strong>Scope estimate</strong> &mdash; then cut it in half.</div>
+          <div class="principle-body">For every small game you make, write a one-page GDD first. Include: core fantasy (what does the player feel?), core loop (what happens every 30 seconds?), win/loss condition, one distinguishing mechanic, and a scope estimate. Then cut the scope in half.</div>
         </div>
         <div class="resource-grid">
           <div class="resource"><div class="resource-type">Community</div><div class="resource-name"><a href="https://ldjam.com" target="_blank" rel="noopener">Ludum Dare</a> / <a href="https://itch.io/jam/gmtk-jam-2024" target="_blank" rel="noopener">GMTK Game Jam</a></div><div class="resource-desc">Participate in at least one jam every 3 months. The 48-hour constraint is the best design education available. You will make something bad and it will teach you more than months of theory.</div><span class="resource-tag tag-free">Free</span><span class="resource-tag tag-essential">Do This</span></div>
@@ -558,7 +558,7 @@
       <div class="track-icon">&#9672;</div>
       <div><div class="track-sub">Your Fastest Ramp</div><h2>Godot 4</h2></div>
     </div>
-    <p style="font-size:12px; color:var(--text-dim); margin-bottom:24px; line-height:1.8;">Given your coding background, Godot will be your most natural track. GDScript is Python-flavored and beginner-friendly, but Godot's node/scene model is conceptually distinct from OOP class hierarchies &mdash; that mental shift is the real learning curve, not the language.</p>
+    <p style="font-size:12px; color:var(--text-dim); margin-bottom:24px; line-height:1.8;">Godot will be your most natural track given your coding background. GDScript is Python-flavored and approachable, but the node/scene model is conceptually different from OOP class hierarchies. That shift in thinking is the actual learning curve here, not the syntax.</p>
 
     <div class="phase phase-teal">
       <div class="phase-header" onclick="togglePhase(this)">
@@ -648,7 +648,7 @@
     </div>
     <div class="callout">
       <div class="callout-icon">&#9678;</div>
-      <div class="callout-body"><strong>Why pixel art first?</strong> Pixel art is the most forgiving art form for beginners &mdash; constraints (small canvas, limited palette) eliminate a huge space of possible mistakes. It rewards deliberate decision-making over fluid technique, maps perfectly to screen pixels, and produces a recognizable aesthetic that works well at indie scale. Do not attempt "full resolution" digital art until you have 6&ndash;12 months of pixel art practice.</div>
+      <div class="callout-body">Pixel art suits beginners because the constraints do a lot of work for you. A small canvas and a limited palette eliminate a huge range of possible mistakes, and the format rewards deliberate choices over fluid technique. Don't attempt full-resolution digital art until you have 6&ndash;12 months of pixel art practice.</div>
     </div>
 
     <div class="phase phase-rose">
@@ -731,7 +731,7 @@
     </div>
     <div class="callout">
       <div class="callout-icon">&#9673;</div>
-      <div class="callout-body"><strong>The most neglected skill in solo game dev.</strong> Studies show audio contributes as much as visuals to player immersion. Most solo devs either use free asset packs or compose two tracks and call it done. This track starts with sound effects (immediate wins) before music (slow accumulation), and teaches music theory before tool proficiency.</div>
+      <div class="callout-body">Audio is the most neglected skill in solo game dev. Sound contributes more to player immersion than most devs expect, and most solo devs either grab free asset packs or throw in two tracks and move on. This track starts with sound effects before music, and theory before DAW proficiency.</div>
     </div>
 
     <div class="phase phase-purple">
@@ -763,7 +763,7 @@
         <div class="phase-toggle">&#9662;</div>
       </div>
       <div class="phase-body">
-        <div class="phase-goal">Goal: Understand the building blocks of music well enough to compose intentionally. You must understand theory before tools &mdash; otherwise the DAW is a box of random buttons.</div>
+        <div class="phase-goal">Goal: Understand the building blocks of music well enough to compose intentionally. Theory before tools. Without theory, the DAW is just a box of random buttons.</div>
         <div class="resource-grid">
           <div class="resource"><div class="resource-type">Interactive</div><div class="resource-name"><a href="https://www.musictheory.net/lessons" target="_blank" rel="noopener">musictheory.net</a></div><div class="resource-desc">Free, structured interactive theory lessons. Work through the complete Lessons section (~20 hours total). Covers everything from reading notation to basic chord theory.</div><span class="resource-tag tag-free">Free</span><span class="resource-tag tag-essential">Start Here</span></div>
           <div class="resource"><div class="resource-type">YouTube</div><div class="resource-name"><a href="https://www.youtube.com/@8bitMusicTheory" target="_blank" rel="noopener">8-Bit Music Theory</a></div><div class="resource-desc">Analyzes video game music composition. Perfect intersection of theory and practice for game devs. Covers why iconic game soundtracks work harmonically.</div><span class="resource-tag tag-free">Free</span><span class="resource-tag tag-essential">Essential</span></div>
@@ -790,7 +790,7 @@
         <div class="phase-goal">Goal: Compose short, seamlessly looping tracks for different game states. Learn how music in games differs from music in other media.</div>
         <div class="callout">
           <div class="callout-icon">&#9672;</div>
-          <div class="callout-body"><strong>Game music is fundamentally different.</strong> It loops indefinitely. It plays under other sounds. It must not demand the listener's attention. It must emotionally support game states without exhausting the player. These constraints are your compositional framework.</div>
+          <div class="callout-body">Game music loops indefinitely, plays under other sounds, and needs to stay in the background. It can't demand attention, and it has to support the player's emotional state for long stretches without wearing them out. Work within those constraints, not against them.</div>
         </div>
         <div class="resource-grid">
           <div class="resource"><div class="resource-type">DAW</div><div class="resource-name"><a href="https://lmms.io" target="_blank" rel="noopener">LMMS</a> &rarr; <a href="https://www.image-line.com" target="_blank" rel="noopener">FL Studio</a> / <a href="https://www.ableton.com" target="_blank" rel="noopener">Ableton</a></div><div class="resource-desc">Start in LMMS. Once you understand loops and progressions, transition to FL Studio (lifetime free updates, ~$99) or Ableton Live Lite (often free with hardware). FL is more intuitive for beginners; Ableton scales better long-term.</div><span class="resource-tag tag-paid">FL: ~$99</span></div>
@@ -816,7 +816,7 @@
       <div class="track-icon">&#11041;</div>
       <div><div class="track-sub">What Most Guides Skip</div><h2>Finishing & Shipping</h2></div>
     </div>
-    <p style="font-size:12px; color:var(--text-dim); margin-bottom:24px; line-height:1.8;">Finishing games is its own skill, and it requires deliberate systems. The graveyard of abandoned prototypes is where most solo devs live permanently.</p>
+    <p style="font-size:12px; color:var(--text-dim); margin-bottom:24px; line-height:1.8;">Finishing is its own skill, separate from building. Most solo devs accumulate abandoned prototypes indefinitely. Avoiding that takes deliberate systems.</p>
 
     <div class="phase phase-blue">
       <div class="phase-header" onclick="togglePhase(this)">
@@ -834,7 +834,7 @@
         </div>
         <div class="principle-block" style="border-color: var(--accent-blue)">
           <div class="principle-title">The Vertical Slice Milestone</div>
-          <div class="principle-body">Before any other feature work, build one complete, polished vertical slice &mdash; one level, one enemy type, one mechanic &mdash; with final art and audio. This slice should be releasable as a demo. Everything else is parallel extension. This prevents the "everything is 80% done and nothing is shippable" trap.</div>
+          <div class="principle-body">Before any other feature work, build one complete, polished vertical slice: one level, one enemy type, one mechanic, with final art and audio. That slice should be releasable as a demo. Everything else extends from there. This prevents the "everything is 80% done and nothing is shippable" problem.</div>
         </div>
         <div class="sub-section-title">Project Management for Solo Devs</div>
         <ul class="plain-list">
@@ -929,7 +929,7 @@
         </ul>
         <div class="callout">
           <div class="callout-icon">&#9745;</div>
-          <div class="callout-body"><strong>Month 1 Milestone:</strong> One game shipped on itch.io. 10+ pixel art objects drawn. musictheory.net 25% complete. "Theory of Fun" read. Two design autopsies and one project retrospective written. You have shipped more than most aspiring game devs ever will.</div>
+          <div class="callout-body"><strong>Month 1 Milestone:</strong> One game shipped on itch.io. 10+ pixel art objects drawn. musictheory.net 25% complete. "Theory of Fun" read. Two design autopsies and one project retrospective written.</div>
         </div>
       </div>
     </div>
@@ -1046,7 +1046,7 @@
         </ul>
         <div class="callout">
           <div class="callout-icon">&#9745;</div>
-          <div class="callout-body"><strong>Quarter 1 Complete:</strong> 3&ndash;4 games shipped (including one jam game). Daily pixel art habit established. musictheory.net fundamentals done. "Theory of Fun" finished, "Art of Game Design" half done. Three project retrospectives written. You are no longer a complete beginner &mdash; you are a beginner who ships.</div>
+          <div class="callout-body"><strong>Quarter 1 Complete:</strong> 3&ndash;4 games shipped (including one jam game). Daily pixel art habit established. musictheory.net fundamentals done. "Theory of Fun" finished, "Art of Game Design" half done. Three project retrospectives written.</div>
         </div>
       </div>
     </div>
@@ -1140,7 +1140,7 @@
         </ul>
         <div class="callout">
           <div class="callout-icon">&#9745;</div>
-          <div class="callout-body"><strong>Half-Year Milestone:</strong> 7&ndash;8 games shipped. Two game jams completed. "Art of Game Design" nearly finished. DAW transition started. You have animated sprites, procedural content, juice techniques, and audio integration skills. You're building faster and better than month 1. The compound effect is real.</div>
+          <div class="callout-body"><strong>Half-Year Milestone:</strong> 7&ndash;8 games shipped. Two game jams completed. "Art of Game Design" nearly finished. DAW transition started. You have animated sprites, procedural content, juice techniques, and audio integration skills.</div>
         </div>
       </div>
     </div>
@@ -1234,7 +1234,7 @@
         </ul>
         <div class="callout">
           <div class="callout-icon">&#9745;</div>
-          <div class="callout-body"><strong>Q2&ndash;Q3 Complete:</strong> ~11 games shipped. Three game jams entered. Shader skills, procedural generation, dialogue systems, state machines, and intermediate animation all in your toolkit. DAW transition complete. Ready for your first "real" game project. You now build in weeks what took months at the start.</div>
+          <div class="callout-body"><strong>Q2&ndash;Q3 Complete:</strong> ~11 games shipped. Three game jams entered. Shader skills, procedural generation, dialogue systems, state machines, and intermediate animation all in your toolkit. DAW transition complete. Ready for your first "real" game project.</div>
         </div>
       </div>
     </div>
@@ -1248,7 +1248,7 @@
         <div class="phase-toggle">&#9662;</div>
       </div>
       <div class="phase-body">
-        <div class="phase-goal">Goal: Build a fully polished vertical slice &mdash; one complete level with final art, audio, and game feel. This slice should be playable as a standalone demo.</div>
+        <div class="phase-goal">Goal: Build a fully polished vertical slice: one complete level with final art, audio, and game feel. This slice should be playable as a standalone demo.</div>
 
         <div class="sub-section-title">Week 37 &mdash; Architecture & Grey-Box</div>
         <ul class="plain-list">
@@ -1356,11 +1356,11 @@
           <li><strong>Retrospective:</strong> Write a comprehensive Year 1 retrospective (1,000+ words). Cover: total games shipped, skills gained per track, biggest surprises, biggest failures, what you'd tell yourself 12 months ago. Save this &mdash; you'll want to read it in Year 2.</li>
           <li><strong>Portfolio review:</strong> Look at all your itch.io games in order. The progression should be visible. This is your proof of growth.</li>
           <li><strong>Year 2 planning:</strong> Brainstorm your Year 2 project. Start with: what genre, what scope (target 6&ndash;9 months), what's your unique angle. Write a one-page concept document. Do not start building yet.</li>
-          <li><strong>Rest:</strong> Take at least one full week off from game dev. You've earned it. Creative rest is productive &mdash; your brain will process and consolidate a year of learning.</li>
+          <li><strong>Rest:</strong> Take at least one full week off from game dev. A year of intensive learning benefits from time to consolidate before starting the next cycle.</li>
         </ul>
         <div class="callout">
           <div class="callout-icon">&#9745;</div>
-          <div class="callout-body"><strong>Year 1 Complete:</strong> 12+ games shipped (including 3 jam entries and 1 polished "real" game). Daily art habit, weekly music composition, design analysis on every project. You can build, art, score, and ship a game independently. You have a public portfolio on itch.io. You are no longer an aspiring game dev. You are a game dev who aspires to be better.</div>
+          <div class="callout-body"><strong>Year 1 Complete:</strong> 12+ games shipped (including 3 jam entries and 1 polished "real" game). Daily art habit, weekly music composition, design analysis on every project. You can build, art, score, and ship a game independently. You have a public portfolio on itch.io.</div>
         </div>
       </div>
     </div>
@@ -1476,12 +1476,12 @@
         <ul class="plain-list">
           <li><strong>Retrospective:</strong> Write a comprehensive Year 2 retrospective (2,000+ words). Compare to your Year 1 retrospective. How has your design thinking changed? Your art quality? Your music composition? Your ability to scope and ship?</li>
           <li><strong>Skills audit:</strong> Rate yourself 1&ndash;5 in each track: Design, Godot, Art, Music, Shipping. Where are you weakest? What would have the highest impact to improve for your next project?</li>
-          <li><strong>Next steps:</strong> You have shipped a real game that you can stand behind. You have a portfolio, a devlog, community connections, and proven skills in five disciplines. Whether your next step is a larger game, a jam-focused year, or learning a new engine &mdash; you now have the foundation to make that choice from experience, not aspiration.</li>
+          <li><strong>Next steps:</strong> You have a portfolio, a devlog, community connections, and working skills in five disciplines. Whether your next step is a larger game, a jam-focused year, or a different engine, you now have enough shipped work to make that choice based on experience.</li>
           <li><strong>Rest again:</strong> Take 2&ndash;4 weeks fully off. Then start the cycle again &mdash; better, faster, and with calibrated ambition.</li>
         </ul>
         <div class="callout">
           <div class="callout-icon">&#9745;</div>
-          <div class="callout-body"><strong>Year 2 Complete:</strong> One polished, publicly released game with original art, music, and design. A press kit and marketing materials. 15+ devlog entries. Community engagement. Two comprehensive retrospectives documenting your growth. You've done what most aspiring solo devs never do: you finished something real, and you did it twice.</div>
+          <div class="callout-body"><strong>Year 2 Complete:</strong> One polished, publicly released game with original art, music, and design. A press kit and marketing materials. 15+ devlog entries. Community engagement. Two comprehensive retrospectives documenting your growth. A portfolio, a devlog, original work in five disciplines, and a calibrated sense of what you can actually ship.</div>
         </div>
       </div>
     </div>
@@ -1551,7 +1551,7 @@
   <div style="border-top: 1px solid var(--border); padding-top: 32px; margin-top: 40px; text-align: center;">
     <p style="font-size: 11px; color: var(--text-dim); letter-spacing: 0.1em; line-height: 2;">
       The measure of a solo dev is not skill in any one discipline.<br>
-      It is the ability to <em style="color: var(--accent-gold)">finish things</em> &mdash; imperfectly, repeatedly, without permission.
+      It is the ability to <em style="color: var(--accent-gold)">finish things</em>, imperfectly, repeatedly, without permission.
     </p>
     <p style="font-size: 10px; color: var(--text-dim); opacity: 0.3; margin-top: 12px; letter-spacing: 0.08em;">v2.1</p>
   </div>
